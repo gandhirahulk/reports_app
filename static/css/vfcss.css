@@ -1,0 +1,127 @@
+@import "basecss.css";
+.vertical-filter-tab {
+    float: left;
+    /* border: 1px solid #ccc; */
+    background-color: var(--sidebar-forecolor);
+    width: 30%;
+    /* height: 70vh;
+    overflow-y: auto; */
+    /* padding-bottom: 100px; */
+  }
+  
+  .vertical-filter-tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .vertical-filter-tab button:hover {
+    background-color: #ffffff;
+    border-left: 5px solid var(--primary-color);
+  }
+  
+  .vertical-filter-tab button.activefilteritem {
+    background-color: #ffffff;
+    border-left: 5px solid var(--primary-color);
+    /* border-right:1px solid #fff; */
+  }
+  
+  .vertical-filter-contents {
+    float: left;
+    /* padding: 0px 10px; */
+    padding-left: 10px;
+    /* border: 1px solid #ccc; */
+    background: #ffffff;
+    width: 70%;
+    border-left: none;
+    height: 72vh;
+  }
+
+
+  .vertical-filter-contents input[type="text"],
+  .vertical-filter-contents input[type="search"]{
+    padding: 9px 5px;
+    box-sizing: border-box;
+    width: 85%;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    outline: none;
+    transition: all 0.2s ease;
+    /* text-transform: capitalize; */
+  }
+
+
+  .rd-company[type=checkbox]:focus,
+  .rd-vendor[type=checkbox]:focus,
+  .rd-selectall[type=checkbox]:focus,
+  .rd-sublocation[type=checkbox]:focus,
+  .rd-location[type=checkbox]:focus,
+  .rd-state[type=checkbox]:focus,
+  .rd-region[type=checkbox]:focus,
+  .rd-role[type=checkbox]:focus,
+  .rd-designation[type=checkbox]:focus,
+  .rd-business[type=checkbox]:focus,
+  .rd-function[type=checkbox]:focus,
+  .rd-subfunction[type=checkbox]:focus
+  {
+    outline: 1px solid rgba(0, 0, 0, 0.1) ;
+}
+
+.rd-company[type=checkbox],
+.rd-vendor[type=checkbox],
+.rd-selectall[type=checkbox],
+.rd-sublocation[type=checkbox] ,
+.rd-location[type=checkbox] ,
+.rd-state[type=checkbox] ,
+.rd-region[type=checkbox] ,
+.rd-role[type=checkbox] ,
+.rd-designation[type=checkbox] ,
+.rd-business[type=checkbox] ,
+.rd-function[type=checkbox] ,
+.rd-subfunction[type=checkbox] {
+    background-color: var(--sidebar-forecolor);
+    border-radius: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    /* position: relative; */
+    top: 5px;
+    margin-right: 10px;
+    border: 1px solid gray;
+}
+
+.rd-company:checked,
+.rd-vendor:checked,
+.rd-selectall:checked,
+.rd-sublocation:checked,
+.rd-location:checked,
+.rd-state:checked,
+.rd-region:checked,
+.rd-role:checked,
+.rd-designation:checked,
+.rd-business:checked,
+.rd-function:checked,
+.rd-subfunction:checked{
+    border:none;
+    background-color: var(--primary-color);
+    background: var(--primary-color) url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 3px 3px no-repeat;
+}
+
+.selectall-btn{
+  padding: 9px 15px;
+  outline: none;
+  background: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  border: none;
+}

@@ -1,0 +1,85 @@
+@import "basecss.css";
+ #treelist {
+    list-style-type: none;
+  }
+  
+  #treelist {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .treebox {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+  
+  /* .treebox::before {
+    content: "\2610";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  } */
+  
+  /* .check-box::before {
+    content: "\2611"; 
+    color: var(--primary-color);
+  } */
+  
+  .nested {
+    padding-left: 50px;
+  }
+
+  .treecb[type=checkbox]:focus
+{
+    outline: 1px solid rgba(0, 0, 0, 0.1) ;
+}
+
+.treecb[type=checkbox]
+{
+    background-color: var(--sidebar-forecolor);
+    border: 1px solid gray;
+    border-radius: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+    margin-right: 10px;
+}
+
+.treecb:checked
+{
+    background-color: var(--primary-color);
+    background: var(--primary-color) url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 3px 3px no-repeat;
+}
+
+.treecb:indeterminate
+{
+    background-color: var(--primary-color); 
+    
+    /* background: var(--primary-color) url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 3px 3px no-repeat; */
+}
+
+  
+.activetree {
+  display: block;
+}
+
+.web-tree-container{
+  height: 65vh;
+  width: inherit;
+  overflow-y: scroll;
+  /* padding: 10px; */
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  
+}
+
+.header-li{
+  color: var(--primary-color);
+}

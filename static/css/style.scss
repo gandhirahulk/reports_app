@@ -1,0 +1,53 @@
+@import "./layout";
+@import "./loginpage";
+@import "./base";
+
+
+// body{
+//     font-family: sans-serif;
+// }
+
+
+// loginpage
+.bg{
+    @include bgblur();
+}
+.loginwrapper{
+    @include loginpanel();     
+    background-color: $login-wrapper-color;  
+    
+    // .fade {
+        
+    // }  
+}
+.login-flex{
+    @include flexlf();
+    padding-bottom: 25px;
+}
+
+// login page
+
+
+.organization-tabs{
+    @include loginpanel();
+}
+
+.basic-save-btn{
+    &:hover{
+        background: darken($btn-color, 6%) !important;
+    }
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(219, 57, 8, 0.4);
+    }
+}
+
+.basic-cancel-btn{
+    &:hover{
+        background: darken(#f5f5fa, 6%) !important;
+    }
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(219, 57, 8, 0.4);
+    }
+}

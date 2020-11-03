@@ -1,0 +1,499 @@
+@import "basecss.css";
+
+@media only screen and (max-width: 992px){
+  .wrapper .top_navbar .top_menu ul{
+  display: flex;
+  float: right;
+  }
+
+  .wrapper .top_navbar .top_menu ul li{
+  display: inline;
+  }
+
+  .wrapper .top_navbar .top_menu ul li .logged_in_user_name{
+  font-size: 14px;
+  /* font-family: sans-serif; */
+  color: var(--primary-forecolor);
+  margin-top: 18px;
+  }
+
+  .wrapper .top_navbar .top_menu ul li a .profile{
+  display: block;
+  margin: 0px 15px;
+  width: 45px;
+  height: 45px;
+  line-height: 35px;
+  margin-top: 15px;
+  border-radius: 50%;
+  }
+
+}
+
+
+
+
+
+@media only screen and (max-width: 960px){
+  .wrapper .top_navbar .top_menu ul li .logged_in_user_name{
+  font-size: 12px !important;
+  /* font-family: sans-serif; */
+  color: var(--primary-forecolor);
+  margin-top: 18px;
+  }
+}
+
+
+
+
+
+
+@media only screen and (max-width: 576px){
+  .wrapper .top_navbar{
+  height: 50px !important;
+  display: flex;
+  position: fixed;
+  /* top: 10px; if margin needed uncomment this and fix top of sidebar */
+  }
+
+  .wrapper .top_navbar .top_menu .hamburger{
+  width: 65px;
+  padding: 20px;  
+  }
+
+  .wrapper .top_navbar .top_menu .hamburger div{
+  width: 18px;
+  height: 2px;
+  background: var(--hamburger-color);
+  margin: 4px 0;
+  border-radius: 10px;
+  }
+
+  .wrapper .top_navbar .top_menu .logo a img{
+  max-width: 40px !important;    
+  }
+
+  .logged_in_user_name div{
+  font-size: 14px;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+
+  .wrapper .top_navbar .top_menu .logo {
+  width: 82%;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section{
+  width: 150% !important;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section i{
+  font-size: 12px !important;
+  padding: 13px 8px 13px 8px !important;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section input{
+  width: 100%;
+  padding-left: 30px !important;
+  font-size: 12px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul li .logged_in_user_name{
+  display: none;
+  }
+
+  .wrapper .top_navbar .top_menu ul li a .profile{
+  margin: 0px !important;
+  width: 35px;
+  height: 35px;
+  margin-top: 15px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul li i{
+  display: block !important;
+  font-size: 14px;
+  margin-top: 32px;
+  padding: 0px;
+  margin-right: 10px;
+  }
+
+  .wrapper .sidebar{
+  top:50px !important;
+  width: 95vw !important;
+  transition: all 0.3s ease;
+  position: fixed;
+  z-index: 100;
+  }
+
+  .wrapper.collapse .sidebar{
+  width: 60px !important;
+  }
+
+  .wrapper.collapse .sidebar ul li a span.menu-icon i{
+  font-size: 14px;
+  }
+
+  #tab_content_block {
+  top: 110px !important;
+  }
+
+  .wrapper.collapse .main_container {
+  width: calc(100% - 80px) !important;
+  margin-left: 70px !important;
+  margin-top: 60px !important;
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 1200px){
+  .logged_in_user_name div{
+  font-size: 14px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+
+  .wrapper .top_navbar .top_menu .logo {
+  width: 104% !important;
+  }
+
+  .wrapper .sidebar{
+  width: 30vw !important;
+  transition: all 0.3s ease;
+  position: fixed;
+  z-index: 100;
+  }
+
+  .wrapper .main_container{
+  width: calc(100% - 32vw) !important;
+  margin-top: 70px !important;
+  margin-left: 31vw !important;
+  transition: all 0.3s ease;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section {
+  width: 205% !important;
+  }
+
+  #tab_content_block {
+  height: 90%;
+  }
+
+  .wrapper.collapse .sidebar{
+  width: 65px !important;
+  }
+
+  .wrapper.collapse .main_container{
+  width: calc(100% - 85px) !important;
+  margin-left: 75px !important;
+  }
+
+  #left-arrow{
+  display: block;
+  }
+
+  #right-arrow {
+  display: none;
+  }
+}
+
+
+
+
+
+
+@media only screen and (max-height: 1400px){
+  .logged_in_user_name div{
+  font-size: 14px;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+}
+
+
+
+
+
+@media screen and (max-width: 992px) {
+  .logged_in_user_name div{
+  font-size: 12x;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+}
+
+/* @media screen and (min-width: 420px) {
+  .logged_in_user_name div{
+  font-size: 12px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section{
+  width: 105%;
+  }
+} */
+
+
+
+
+
+@media only screen and (max-width: 768px){
+  .logged_in_user_name div{
+  font-size: 14px;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section{
+  width: 115%;
+  }
+
+  .wrapper .sidebar{
+  width: 38vw !important;
+  transition: all 0.3s ease;
+  position: fixed;
+  z-index: 100;
+  }
+
+  .wrapper .main_container{
+  width: calc(100% - 40vw) !important;
+  margin-top: 70px !important;
+  margin-left: 39vw !important;
+  transition: all 0.3s ease;
+  }
+}
+
+
+
+
+
+@media only screen and (max-height: 1024px){
+  .logged_in_user_name div{
+  font-size: 14px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+}
+
+
+
+
+
+@media only screen and (max-width: 420px){
+
+  .wrapper .top_navbar{
+  height: 50px !important;
+  display: flex;
+  position: fixed;
+  /* top: 10px; if margin needed uncomment this and fix top of sidebar */
+  }
+
+  .wrapper .top_navbar .top_menu .hamburger{
+  width: 65px;
+  padding: 20px;  
+  }
+
+  .wrapper .top_navbar .top_menu .hamburger div{
+  width: 18px;
+  height: 2px;
+  background: var(--hamburger-color);
+  margin: 4px 0;
+  border-radius: 10px;
+  }
+
+  .wrapper .top_navbar .top_menu .logo a img{
+  max-width: 40px !important;    
+  }
+
+  .logged_in_user_name div{
+  font-size: 14px;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+
+  .wrapper .top_navbar .top_menu .logo {
+  width: 82%;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section{
+  width: 150% !important;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section i{
+  font-size: 12px !important;
+  padding: 13px 8px 13px 8px !important;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section input{
+  width: 100%;
+  padding-left: 30px !important;
+  font-size: 12px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul li .logged_in_user_name{
+  display: none;
+  }
+
+  .wrapper .top_navbar .top_menu ul li a .profile{
+  /* margin: 0px 10px; */
+  margin: 0px !important;
+  width: 35px;
+  height: 35px;
+  margin-top: 15px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul li i{
+  display: block !important;
+  font-size: 14px;
+  /* color: red !important; */
+  margin-top: 32px;
+  padding: 0px;
+  margin-right: 10px;
+  }
+
+  .wrapper .sidebar{
+  top:50px !important;
+  width: 95vw !important;
+  transition: all 0.3s ease;
+  position: fixed;
+  z-index: 100;
+  }
+
+  .wrapper.collapse .sidebar{
+  width: 60px !important;
+  }
+  .wrapper.collapse .sidebar ul li a span.menu-icon i{
+  font-size: 14px;
+  }
+
+  #tab_content_block {
+  top: 110px !important;
+  }
+
+  .wrapper.collapse .main_container {
+  width: calc(100% - 80px) !important;
+  margin-left: 70px !important;
+  margin-top: 60px !important;
+  }
+}
+
+
+
+
+
+
+@media only screen and (max-width: 899px){
+  .wrapper .top_navbar{
+  height: 50px !important;
+  display: flex;
+  position: fixed;
+  /* top: 10px; if margin needed uncomment this and fix top of sidebar */
+  }
+
+  .wrapper .top_navbar .top_menu .hamburger{
+  width: 65px;
+  padding: 20px;  
+  }
+
+  .wrapper .top_navbar .top_menu .hamburger div{
+  width: 18px;
+  height: 2px;
+  background: var(--hamburger-color);
+  margin: 4px 0;
+  border-radius: 10px;
+  }
+
+  .wrapper .top_navbar .top_menu .logo a img{
+  max-width: 40px !important;    
+  }
+
+  .logged_in_user_name div{
+  font-size: 14px;
+  }
+
+  .wrapper .top_navbar .top_menu ul {
+  line-height: 1.5;
+  }
+
+  .wrapper .top_navbar .top_menu .logo {
+  width: 82%;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section{
+  width: 150% !important;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section i{
+  font-size: 12px !important;
+  padding: 13px 8px 13px 8px !important;
+  }
+
+  .wrapper .top_navbar .top_menu .search_section input{
+  width: 100%;
+  padding-left: 30px !important;
+  font-size: 12px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul li .logged_in_user_name{
+  display: none;
+  }
+
+  .wrapper .top_navbar .top_menu ul li a .profile{
+  margin: 0px !important;
+  width: 35px;
+  height: 35px;
+  margin-top: 15px !important;
+  }
+
+  .wrapper .top_navbar .top_menu ul li i{
+  display: block !important;
+  font-size: 14px;
+  margin-top: 32px;
+  padding: 0px;
+  margin-right: 10px;
+  }
+
+  .wrapper .sidebar{
+  top:50px !important;
+  width: 95vw !important;
+  transition: all 0.3s ease;
+  position: fixed;
+  z-index: 100;
+  }
+
+  .wrapper.collapse .sidebar{
+  width: 60px !important;
+  }
+
+  .wrapper.collapse .sidebar ul li a span.menu-icon i{
+  font-size: 14px;
+  }
+
+  #tab_content_block {
+  top: 110px !important;
+  }
+
+  .wrapper.collapse .main_container {
+  width: calc(100% - 80px) !important;
+  margin-left: 70px !important;
+  margin-top: 60px !important;
+  }
+}

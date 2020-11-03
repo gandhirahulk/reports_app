@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load define %}
+{% load get_sub_field %}
+{% load get_dict_value %}
+{% block titleblock %} | Reports {% endblock %}
+
+{% block tabcontentblock %}
+
+    <div class="crumbs">
+        <span><i class="fas fa-chevron-right"></i></span>
+        <span><a href="">Reports</a></span>
+    </div>
+
+
+    <div class="tab_container" style="padding:15px;">
+        <div style="padding-top: 60px;padding-bottom:10px;display: flex;justify-content: space-between;">
+            <label>RESPONSE HEADERS</label>
+            <br>
+        </div>
+
+        <form id="payroll_form" method="post">
+            {% csrf_token %}
+            <div>
+                <style>
+                    .data_table td {
+                        padding: 5px;
+                        margin: 5px;
+                        font-size: initial;
+                        width: -moz-available;
+                    }
+
+                    .data_table text {
+                        padding: 5px;
+                        margin: 5px;
+                        font-size: initial;
+                    }
+
+                    .sub_table {
+                        font-size: initial;
+                        width: 200px;
+                    }
+                </style>
+                <table class="data_table" style="overflow-x: auto; white-space: nowrap;" onmouseover="this.style.display='block'"
+                onmouseout="this.style.display='' ">
+                    <thead>
+                    <tr>
+                        <td>Dimensions :</td>
+                        {% for dimension in dimensions %}
+                            <td>
+                                <div class="multiselect">
+                                    <div class="selectBox"
+                                         onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
+                                        <select name="dimensions" class="dimensions"
+                                                id="dimensions--{{ forloop.counter }}" style="font-size: initial">
+                                            <option>{{ dimension.name }}</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                    </div>
+                                    <div id="div--{{ dimension.name }}--{{ forloop.counter }}" style="display: none;
+            border: 1px #dadada solid;">
+                                        {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}
+                                            {% define var1|add:'--'|add:var2|get_sub_field as query_set %}
+                                            {% for name,fk in query_set.query_set.items %}
+                                                <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
+                                                       style="display: block; ">
+                                                    <input type="checkbox" class="{{ dimension.name }}"
+                                                           name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
+                                                           id="{{ dimension.name }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                                           onclick="fetch_dependent_field(this.id)"/>{{ name }}
+                                                </label>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+
+
+                                {#                                <select name="dimensions" class="dimensions" id="dimensions--{{ forloop.counter }}"#}
+                                {#                                        style="width: auto" multiple>#}
+                                {#                                    {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}#}
+                                {#                                        {% define var1|add:'--'|add:var2|get_sub_field as query_set %}#}
+                                {#                                        {% for name in query_set %}#}
+                                {#                                            <option value="{{ name }}"#}
+                                {#                                                    id="period--{{ forloop.counter }}--{{ forloop.parentloop.counter }}">#}
+                                {#                                                {{ name }}#}
+                                {#                                            </option>#}
+                                {#                                        {% endfor %}#}
+                                {#                                    {% endwith %}#}
+                                {#                                </select>#}
+                                {#                                <script>#}
+                                {#                                    $(document).ready(function () {#}
+                                {#                                        $("#dimensions--{{ forloop.counter }}").CreateMultiCheckBox({#}
+                                {#                                            width: '230px',#}
+                                {#                                            defaultText: '{{dimension.name}}',#}
+                                {#                                            height: '250px'#}
+                                {#                                        });#}
+                                {#                                    });#}
+                                {#                                </script>#}
+                            </td>
+                        {% endfor %}
+
+                    </tr>
+                    {#multiple class="chosen-select"#}
+                    <tr>
+                        <td>Report Type :</td>
+                        <td><select data-placeholder="Begin typing a name to filter..."
+                                    class='sub_table' name="report type" id="type_code">
+                            {% for report in report_types %}
+                                <option value="{{ report.name }}" style="outline: none !important;">
+                                    {{ report.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Frequency :</td>
+                        <td>
+                            <select name="frequency" id="freq_code" class='sub_table'>
+                                {% for frequency in frequencies %}
+                                    <option value="{{ frequency.name }}"
+                                            style="outline: none !important;">{{ frequency.name }}</option>
+                                {% endfor %}
+                            </select></td>
+                    </tr>
+                    </thead>
+                    <tbody id="input_data">
+                    </tbody>
+                </table>
+            </div>
+
+            <br><br>
+
+            <button type="submit" class="basic-save-btn" id="render_table" name="go_button"
+                    style="width: 100px;padding: 5px;margin: 5px;float: right">GO
+            </button>
+            <br>
+            <br>
+
+        </form>
+    </div>
+    <input type="checkbox" id="partial_select_await" hidden>
+
+    <br><br>
+    <div>
+        <table class="data_table" style="overflow-x: auto;white-space: nowrap;" onmouseover="this.style.display='block'"
+                onmouseout="this.style.display='' ">
+            <thead>
+            <tr>
+                <th style="border-right: 1px solid black; padding: 10px">UID</th>
+                <th style="border-right: 1px solid black; padding: 10px">Employee Name</th>
+                <th style="border-right: 1px solid black; padding: 10px">Entity</th>
+                <th style="border-right: 1px solid black; padding: 10px">Vendor</th>
+                <th style="border-right: 1px solid black; padding: 10px">Department</th>
+                <th style="border-right: 1px solid black; padding: 10px">Function</th>
+                <th style="border-right: 1px solid black; padding: 10px">Team</th>
+                <th style="border-right: 1px solid black; padding: 10px">Sub Team</th>
+                <th style="border-right: 1px solid black; padding: 10px">Region</th>
+                <th style="border-right: 1px solid black; padding: 10px">State</th>
+                <th style="border-right: 1px solid black; padding: 10px">Location</th>
+                <th style="border-right: 1px solid black; padding: 10px">Employee Type</th>
+                <th style="border-right: 1px solid black; padding: 10px">Gender</th>
+                <th style="border-right: 1px solid black; padding: 10px">CTC Slabs</th>
+                <th style="border-right: 1px solid black; padding: 10px">Employment Tenure</th>
+                <th style="border-right: 1px solid black; padding: 10px">Reason For Exit</th>
+                <th style="border-right: 1px solid black; padding: 10px">Exit Type</th>
+                <th style="border-right: 1px solid black; padding: 10px">Age</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy UID</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Employee Name</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Entity</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Vendor</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Department</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Function</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Team</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Sub Team</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Region</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy State</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Location</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Employee Type</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Gender</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy CTC Slabs</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Employment Tenure</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Reason For Exit</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Exit Type</td>
+                <td style="border-right: 1px solid black; padding: 10px">Dummy Age</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(".chosen-select").chosen({
+            no_results_text: "Oops, nothing found!"
+        })
+        $(".chosen-search-input").each(function (i, v) {
+            v.style.width = '200px'
+        });
+        $(".chosen-choices").each(function (i, v) {
+            v.style.width = '300px'
+        });
+    </script>
+
+    <script>
+        $("#payroll_form").on("submit", function (e) {
+            $.post('/payroll/', $(this).serialize(), function (data) {
+                $('.message').html(data.message);
+            });
+            e.preventDefault();
+        });
+    </script>
+
+
+    <script>
+        var expanded = false;
+
+        function showCheckboxes(element_id) {
+            var checkboxes = document.getElementById(element_id);
+            if (!expanded) {
+                checkboxes.style.display = "block";
+                expanded = true;
+            } else {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".MultiCheckBox", function () {
+                var detail = $(this).next();
+                detail.show();
+            });
+
+            $(document).on("click", ".MultiCheckBoxDetailHeader input", function (e) {
+                e.stopPropagation();
+                var hc = $(this).prop("checked");
+                $(this).closest(".MultiCheckBoxDetail").find(".MultiCheckBoxDetailBody input").prop("checked", hc);
+                $(this).closest(".MultiCheckBoxDetail").next().UpdateSelect();
+            });
+
+            $(document).on("click", ".MultiCheckBoxDetailHeader", function (e) {
+                var inp = $(this).find("input");
+                var chk = inp.prop("checked");
+                inp.prop("checked", !chk);
+                $(this).closest(".MultiCheckBoxDetail").find(".MultiCheckBoxDetailBody input").prop("checked", !chk);
+                $(this).closest(".MultiCheckBoxDetail").next().UpdateSelect();
+            });
+
+            $(document).on("click", ".MultiCheckBoxDetail .cont input", function (e) {
+                e.stopPropagation();
+                $(this).closest(".MultiCheckBoxDetail").next().UpdateSelect();
+
+                var val = ($(".MultiCheckBoxDetailBody input:checked").length == $(".MultiCheckBoxDetailBody input").length)
+                $(".MultiCheckBoxDetailHeader input").prop("checked", val);
+            });
+
+            $(document).on("click", ".MultiCheckBoxDetail .cont", function (e) {
+                var inp = $(this).find("input");
+                var chk = inp.prop("checked");
+                inp.prop("checked", !chk);
+
+                var multiCheckBoxDetail = $(this).closest(".MultiCheckBoxDetail");
+                var multiCheckBoxDetailBody = $(this).closest(".MultiCheckBoxDetailBody");
+                multiCheckBoxDetail.next().UpdateSelect();
+
+                var val = ($(".MultiCheckBoxDetailBody input:checked").length == $(".MultiCheckBoxDetailBody input").length)
+                $(".MultiCheckBoxDetailHeader input").prop("checked", val);
+            });
+
+            $(document).mouseup(function (e) {
+                var container = $(".MultiCheckBoxDetail");
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    container.hide();
+                }
+            });
+        });
+
+        var defaultMultiCheckBoxOption = {width: '220px', defaultText: 'Select Below', height: '200px'};
+
+        jQuery.fn.extend({
+            CreateMultiCheckBox: function (options) {
+
+                var localOption = {};
+                localOption.width = (options != null && options.width != null && options.width != undefined) ? options.width : defaultMultiCheckBoxOption.width;
+                localOption.defaultText = (options != null && options.defaultText != null && options.defaultText != undefined) ? options.defaultText : defaultMultiCheckBoxOption.defaultText;
+                localOption.height = (options != null && options.height != null && options.height != undefined) ? options.height : defaultMultiCheckBoxOption.height;
+
+                this.hide();
+                this.attr("multiple", "multiple");
+                var divSel = $("<div class='MultiCheckBox'>" + localOption.defaultText + "<span class='k-icon k-i-arrow-60-down'><svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='sort-down' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' class='svg-inline--fa fa-sort-down fa-w-10 fa-2x'><path fill='currentColor' d='M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z' class=''></path></svg></span></div>").insertBefore(this);
+                divSel.css({"width": localOption.width});
+
+                var detail = $("<div class='MultiCheckBoxDetail'><div class='MultiCheckBoxDetailHeader'><input type='checkbox' class='mulinput' value='-1982' /><div>Select All</div></div><div class='MultiCheckBoxDetailBody'></div></div>").insertAfter(divSel);
+                detail.css({"width": parseInt(options.width) + 10, "max-height": localOption.height});
+                var multiCheckBoxDetailBody = detail.find(".MultiCheckBoxDetailBody");
+
+                this.find("option").each(function () {
+                    var val = $(this).attr("value");
+
+                    if (val == undefined)
+                        val = '';
+
+                    multiCheckBoxDetailBody.append("<div class='cont'><div><input type='checkbox' class='mulinput' value='" + val + "' /></div><div>" + $(this).text() + "</div></div>");
+                });
+
+                multiCheckBoxDetailBody.css("max-height", (parseInt($(".MultiCheckBoxDetail").css("max-height")) - 28) + "px");
+            },
+            UpdateSelect: function () {
+                var arr = [];
+
+                this.prev().find(".mulinput:checked").each(function () {
+                    arr.push($(this).val());
+                });
+
+                this.val(arr);
+            },
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            let elements = document.getElementsByClassName("MultiCheckBoxDetail")
+            $.each(elements, function (i, v) {
+                v.style.position = 'relative';
+                v.style.background = 'white';
+                v.style.width = '230px';
+                v.style.zIndex = '9'
+            });
+        });
+    </script>
+    <script src="{% static 'js/filtering.js' %}"></script>
+{% endblock %}

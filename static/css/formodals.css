@@ -1,0 +1,1407 @@
+@import "basecss.css";
+
+.company_form::-webkit-scrollbar,
+.company_form::-moz-scrollbar,
+.edit_company_form_modal-company::-webkit-scrollbar{
+  display: none;
+}
+  
+.company_form {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 5%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.company_form-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.company_form-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 80%;
+  overflow: auto;
+  height: 70%;
+}
+
+.company_form_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 80%;
+  line-height: 0.6;
+  height: 45px;
+}  
+
+.close {
+  color: var(--sidebar-forecolor);
+  float: right;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 0.4;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+  
+.close:hover,
+.close:focus {
+  color: #ffff;
+  transform: scale(1.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.editclose {
+  color: var(--sidebar-forecolor);
+  float: right;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 0.4;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+  
+.editclose:hover,
+.editclose:focus {
+  color: #ffff;
+  transform: scale(1.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.deleteclose,
+.deletevendorclose,
+.addbusinessclose,
+.addfunctionclose,
+.addsubfunctionclose,
+.addroleclose,
+.adddesignationclose,
+.addregionclose,
+.addstateclose,
+.addlocationclose,
+.addsublocationclose,
+.addgenderclose{
+  color: var(--sidebar-forecolor);
+  float: right;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 0.4;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+  
+.deleteclose:hover,
+.deleteclose:focus,
+.addbusinessclose:hover,
+.addbusinessclose:focus,
+.addfunctionclose:hover,
+.addfunctionclose:focus,
+.addsubfunctionclose:hover,
+.addsubfunctionclose:focus,
+.addroleclose:hover,
+.adddesignationclose:hover,
+.addregionclose:hover,
+.addstateclose:hover,
+.addlocationclose:hover,
+.addsublocationclose:hover,
+.addgenderclose:hover,
+.addroleclose:focus,
+.adddesignationclose:focus,
+.addregionclose:focus,
+.addstateclose:focus,
+.addlocationclose:focus,
+.addsublocationclose:focus,
+.addgenderclose:focus{
+  color: #ffff;
+  transform: scale(1.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.viewclose, .close {
+  color: var(--sidebar-forecolor);
+  float: right;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 0.4;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+  
+.viewclose:hover,
+.viewclose:focus,
+.close:hover,
+.close:focus {
+  color: #ffff;
+  transform: scale(1.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.company_form-content form div input,
+.addvendor_form_modal-content form div input,
+.edit_company_form_modal-content form div input,
+.edit_company_form_modal-content-company form div input,
+.edit_group_form_modal-content form div input,
+.addbusiness_form_modal-content form div input,
+.addfunction_form_modal-content form div input,
+.addsubfunction_form_modal-content form div input,
+.addrole_form_modal-content form div input,
+.adddesignation_form_modal-content form div input,
+.addregion_form_modal-content form div input,
+.addstate_form_modal-content form div input,
+.addlocation_form_modal-content form div input,
+.addsublocation_form_modal-content form div input,
+.addgender_form_modal-content form div input,
+.addgroup_form_modal-content form div input{
+    padding: 6px;
+    border: 1px solid lightgray;
+    border-radius: 3px !important;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+
+.company_form-content form div input[type="email"],
+.addvendor_form_modal-content form div input[type="email"],
+.edit_company_form_modal-content form div input[type="email"],
+.edit_company_form_modal-content-company form div input[type="email"],
+.edit_group_form_modal-content form div input[type="email"],
+.addbusiness_form_modal-content form div input[type="email"],
+.addfunction_form_modal-content form div input[type="email"],
+.addsubfunction_form_modal-content form div input[type="email"],
+.addrole_form_modal-content form div input[type="email"],
+.adddesignation_form_modal-content form div input[type="email"],
+.addregion_form_modal-content form div input[type="email"],
+.addstate_form_modal-content form div input[type="email"],
+.addlocation_form_modal-content form div input[type="email"],
+.addsublocation_form_modal-content form div input[type="email"],
+.addgender_form_modal-content form div input[type="email"],
+.addgroup_form_modal-content form div input[type="email"],
+
+.company_form-content form div input[type="url"],
+.addvendor_form_modal-content form div input[type="url"],
+.edit_company_form_modal-content form div input[type="url"],
+.edit_company_form_modal-content-company form div input[type="url"],
+.edit_group_form_modal-content form div input[type="url"],
+.addbusiness_form_modal-content form div input[type="url"],
+.addfunction_form_modal-content form div input[type="url"],
+.addsubfunction_form_modal-content form div input[type="url"],
+.addrole_form_modal-content form div input[type="url"],
+.adddesignation_form_modal-content form div input[type="url"],
+.addregion_form_modal-content form div input[type="url"],
+.addstate_form_modal-content form div input[type="url"],
+.addlocation_form_modal-content form div input[type="url"],
+.addsublocation_form_modal-content form div input[type="url"],
+.addgender_form_modal-content form div input[type="url"],
+.addgroup_form_modal-content form div input[type="url"]{
+  text-transform: none;
+}
+
+.company_form-content form div input:focus,
+.addvendor_form_modal-content form div input:focus,
+.edit_company_form_modal-content form div input:focus,
+.edit_company_form_modal-content-company form div input:focus,
+.edit_group_form_modal-content form div input:focus,
+.addbusiness_form_modal-content form div input:focus,
+.addfunction_form_modal-content form div input:focus,
+.addsubfunction_form_modal-content form div input:focus,
+.addrole_form_modal-content form div input:focus,
+.adddesignation_form_modal-content form div input:focus,
+.addregion_form_modal-content form div input:focus,
+.addstate_form_modal-content form div input:focus,
+.addlocation_form_modal-content form div input:focus,
+.addsublocation_form_modal-content form div input:focus,
+.addgender_form_modal-content form div input:focus,
+.addgroup_form_modal-content form div input:focus{
+  outline: 1px solid #1A1F23;
+  border-radius: 3px !important;
+  
+}
+
+.company_form-content form div textarea,
+.edit_company_form_modal-content form div textarea,
+.edit_company_form_modal-content-company form div textarea,
+.edit_group_form_modal-content form div textarea,
+.addbusiness_form_modal-content form div textarea,
+.addfunction_form_modal-content form div textarea,
+.addsubfunction_form_modal-content form div textarea,
+.addrole_form_modal-content form div textarea,
+.adddesignation_form_modal-content form div textarea,
+.addregion_form_modal-content form div textarea,
+.addstate_form_modal-content form div textarea,
+.addlocation_form_modal-content form div textarea,
+.addsublocation_form_modal-content form div textarea,
+.addgender_form_modal-content form div textarea{
+  padding: 6px;
+  border: 1px solid lightgray;
+  border-radius: 3px !important;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.company_form-content form div textarea:focus,
+.edit_company_form_modal-content form div textarea:focus,
+.edit_company_form_modal-content-company form div textarea:focus,
+.edit_group_form_modal-content form div textarea:focus,
+.addbusiness_form_modal-content form div textarea:focus,
+.addfunction_form_modal-content form div textarea:focus,
+.addsubfunction_form_modal-content form div textarea:focus,
+.addrole_form_modal-content form div textarea:focus,
+.adddesignation_form_modal-content form div textarea:focus,
+.addregion_form_modal-content form div textarea:focus,
+.addstate_form_modal-content form div textarea:focus,
+.addlocation_form_modal-content form div textarea:focus,
+.addsublocation_form_modal-content form div textarea:focus,
+.addgender_form_modal-content form div textarea:focus{
+  outline: 1px solid #1A1F23;
+  border-radius: 3px !important;
+  
+}
+
+.company_form-content form div select,
+.addvendor_form_modal-content form div select,
+.edit_company_form_modal-content form div select,
+.edit_company_form_modal-content-company form div select,
+.edit_group_form_modal-content form div select,
+.addbusiness_form_modal-content form div select,
+.addfunction_form_modal-content form div select,
+.addsubfunction_form_modal-content form div select,
+.addrole_form_modal-content form div select,
+.adddesignation_form_modal-content form div select,
+.addregion_form_modal-content form div select,
+.addstate_form_modal-content form div select,
+.addlocation_form_modal-content form div select,
+.addsublocation_form_modal-content form div select,
+.addgender_form_modal-content form div select,
+.addgroup_form_modal-content form div select{
+  padding: 6px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.company_form-content form div select:focus,
+.addvendor_form_modal-content form div select:focus,
+.edit_company_form_modal-content form div select:focus,
+.edit_company_form_modal-content-company form div select:focus,
+.edit_group_form_modal-content form div select:focus,
+.addbusiness_form_modal-content form div select:focus,
+.addfunction_form_modal-content form div select:focus,
+.addsubfunction_form_modal-content form div select:focus,
+.addrole_form_modal-content form div select:focus,
+.adddesignation_form_modal-content form div select:focus,
+.addregion_form_modal-content form div select:focus,
+.addstate_form_modal-content form div select:focus,
+.addlocation_form_modal-content form div select:focus,
+.addsublocation_form_modal-content form div select:focus,
+.addgender_form_modal-content form div select:focus,
+.addgroup_form_modal-content form div select:focus{
+  outline: 1px solid #1A1F23;
+}
+
+.company_form-content form div select option,
+.addvendor_form_modal-content form div select option,
+.edit_company_form_modal-content form div select option,
+.edit_company_form_modal-content-company form div select option,
+.edit_group_form_modal-content form div select option,
+.addfunction_form_modal-content form div select option,
+.addsubfunction_form_modal-content form div select option,
+.addrole_form_modal-content form div select option,
+.adddesignation_form_modal-content form div select option,
+.addregion_form_modal-content form div select option,
+.addstate_form_modal-content form div select option,
+.addlocation_form_modal-content form div select option,
+.addsublocation_form_modal-content form div select option,
+.addgender_form_modal-content form div select option,
+.addgroup_form_modal-content form div select option{
+  padding: 6px;
+}
+
+.company_form-content form div select option:hover,
+.company_form-content form div select option:focus,
+.addvendor_form_modal-content form div select option:hover,
+.addvendor_form_modal-content form div select option:focus,
+.edit_company_form_modal-content form div select option:hover,
+.edit_company_form_modal-content form div select option:focus,
+.edit_company_form_modal-content-company form div select option:hover,
+.edit_company_form_modal-content-company form div select option:focus,
+.edit_group_form_modal-content form div select option:hover,
+.edit_group_form_modal-content form div select option:focus,
+.addbusiness_form_modal-content form div select option:hover,
+.addbusiness_form_modal-content form div select option:focus,
+.addfunction_form_modal-content form div select option:hover,
+.addfunction_form_modal-content form div select option:focus,
+.addsubfunction_form_modal-content form div select option:hover,
+.addsubfunction_form_modal-content form div select option:focus,
+.addrole_form_modal-content form div select option:hover,
+.adddesignation_form_modal-content form div select option:hover,
+.addregion_form_modal-content form div select option:hover,
+.addstate_form_modal-content form div select option:hover,
+.addlocation_form_modal-content form div select option:hover,
+.addsublocation_form_modal-content form div select option:hover,
+.addgender_form_modal-content form div select option:hover,
+.addrole_form_modal-content form div select option:focus,
+.adddesignation_form_modal-content form div select option:focus,
+.addregion_form_modal-content form div select option:focus,
+.addstate_form_modal-content form div select option:focus,
+.addlocation_form_modal-content form div select option:focus,
+.addsublocation_form_modal-content form div select option:focus,
+.addgender_form_modal-content form div select option:focus,
+.addgroup_form_modal-content form div select option:hover,
+.addgroup_form_modal-content form div select option:focus{
+  border: 1px solid lightgray;
+  outline: 1px solid #1A1F23;
+  background: var(--sidebar-forecolor) !important;
+}
+
+.create-btn{
+  border: 1px solid var(--primary-color);
+  background: var(--sidebar-forecolor);
+  color: var(--primary-color);
+  padding: 5px;
+  float: right;
+  outline: 0px #ffff !important;
+  font-size: 14px;
+}
+
+.create-btn:hover{
+  background: var(--primary-color);
+  border: none !important;
+  color: var(--sidebar-forecolor);
+  outline: 1px solid var(--primary-color) !important;
+}
+
+.delete-company-btn{
+  border: 1px solid var(--primary-color);
+  background: var(--sidebar-forecolor);
+  color: var(--primary-color);
+  padding: 5px;
+  float: right;
+  outline: 0px #ffff !important;
+  font-size: 14px;
+  margin-left: 10px;
+  width: 100px;
+}
+
+.delete-company-btn:hover{
+  background: var(--primary-color);
+  border: none !important;
+  color: var(--sidebar-forecolor);
+  outline: 1px solid var(--primary-color) !important;
+}
+
+
+.company_form_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 80%;
+  height: 60px;
+}
+
+
+
+
+
+
+
+
+.edit_company_form_modal::-webkit-scrollbar,
+.edit_company_form_modal-company::-webkit-scrollbar {
+  display: none;
+}
+  
+.edit_company_form_modal-company {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 5%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+  
+
+}
+
+.edit_company_form_modal-content::-webkit-scrollbar,
+.edit_company_form_modal-content-company::-webkit-scrollbar {
+  display: none;
+}
+ 
+.edit_company_form_modal-content-company {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+   width: 80%;
+  overflow: auto;
+  height: 70%;
+} 
+
+.edit_company_form_modal_header-company{
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 80%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.edit_company_form_modal_footer-company{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 80%;
+  height: 60px;
+}
+
+
+.edit-company-btn{
+border: 1px solid #1A1F23;
+background: var(--sidebar-forecolor);
+color: var(--primary-forecolor);
+padding: 5px;
+float: right;
+outline: 0px #ffff !important;
+width: 100px;
+
+}
+
+.edit-company-btn:hover{
+background: var(--primary-color);
+border: none !important;
+color: var(--sidebar-forecolor);
+outline: 1px solid var(--primary-color) !important;
+}
+
+
+
+
+
+
+
+.delete_company_form_modal::-webkit-scrollbar,
+.delete_group_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.delete_company_form_modal,
+.delete_group_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 5%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.delete_company_form_modal-content::-webkit-scrollbar,
+.delete_group_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.delete_company_form_modal-content,
+.delete_group_form_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 40%;
+  overflow: auto;
+  height: 20%;
+}
+
+.delete_company_form_modal_header,
+.delete_group_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 40%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.delete_company_form_modal_footer,
+.delete_group_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 40%;
+  height: 60px;
+}
+
+.delete_group_form_modal_header,
+.delete_group_form_modal-content,
+.delete_group_form_modal_footer{
+  width: 350px;
+}
+
+.delete_group_form_modal-content{
+  height: 80px;
+}
+
+.delete_group_form_modal{
+  padding-top: 10%;
+}
+
+/* .delete-company-btn{
+  border: 1px solid #1A1F23;
+  background: var(--sidebar-forecolor);
+  color: var(--primary-forecolor);
+  padding: 4px;
+  float: right;
+  outline: 0px #ffff !important;
+  }
+  
+  .delete-company-btn:hover{
+  background: var(--primary-color);
+  border: none !important;
+  color: var(--sidebar-forecolor);
+  outline: 1px solid var(--primary-color) !important;
+  } */
+
+
+
+
+
+
+.viewcompany_form_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+.viewcompany_form-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.viewcompany_form-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  font-size: 16px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  height: 70%;
+}
+
+.viewcompany_form_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+}  
+
+
+
+
+
+.addvendor_form_modal::-webkit-scrollbar,
+.addstate_form_modal::-webkit-scrollbar,
+.addlocation_form_modal::-webkit-scrollbar,
+.addsublocation_form_modal::-webkit-scrollbar,
+.addrole_form_modal::-webkit-scrollbar,
+.addgroup_form_modal::-webkit-scrollbar,
+.edit_group_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.addvendor_form_modal,
+.addstate_form_modal,
+.addlocation_form_modal,
+.addsublocation_form_modal,
+.addrole_form_modal,
+.addgroup_form_modal,
+.edit_group_form_modal,
+.edit_company_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 10%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.addvendor_form_modal-content::-webkit-scrollbar,
+.addstate_form_modal-content::-webkit-scrollbar,
+.addlocation_form_modal-content::-webkit-scrollbar,
+.addsublocation_form_modal-content::-webkit-scrollbar,
+.addrole_form_modal-content::-webkit-scrollbar,
+.addgroup_form_modal-content::-webkit-scrollbar,
+.edit_group_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.addvendor_form_modal-content,
+.addstate_form_modal-content,
+.addlocation_form_modal-content,
+.addsublocation_form_modal-content,
+.addrole_form_modal-content,
+.edit_company_form_modal-content{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  height: 180px;
+}
+
+
+
+.addgroup_form_modal-content,
+.edit_group_form_modal-content {
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 350px;
+  overflow: auto;
+  height: 100px;
+}
+
+.addvendor_form_modal_header,
+.addstate_form_modal_header,
+.addlocation_form_modal_header,
+.addsublocation_form_modal_header,
+.addrole_form_modal_header,
+.edit_company_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.addgroup_form_modal_header,
+.edit_group_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 350px;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.addvendor_form_modal_footer,
+.addstate_form_modal_footer,
+.addlocation_form_modal_footer,
+.addsublocation_form_modal_footer,
+.addrole_form_modal_footer,
+.edit_company_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+.addgroup_form_modal_footer,
+.edit_group_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 350px;
+  height: 60px;
+}
+
+.addvendorclose,
+.addstateclose,
+.addlocationclose,
+.addsublocationclose,
+.addroleclose,
+.addgroupclose,
+.edit_groupclose{
+  color: var(--sidebar-forecolor);
+  float: right;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 0.4;
+  /* border-radius: 50%; */
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  /* border: 2px solid var(--sidebar-forecolor); */
+  transition: 0.3s ease;
+}
+  
+.addvendorclose:hover,
+.addvendorclose:focus,
+.addroleclose:hover,
+.addroleclose:focus,
+.addstateclose:hover,
+.addlocationclose:hover,
+.addsublocationclose:hover,
+.addstateclose:focus,
+.addlocationclose:focus,
+.addsublocationclose:focus,
+.addgroupclose:hover,
+.addgroupclose:focus{
+  color: #ffff;
+  transform: scale(1.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.addvendor-btn,
+.addbusiness-btn,
+.addfunction-btn,
+.addsubfunction-btn,
+.addrole-btn,
+.adddesignation-btn,
+.addregion-btn,
+.addstate-btn,
+.addlocation-btn,
+.addsublocation-btn,
+.addgender-btn,
+.addgroup-btn{
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  padding: 5px;
+  float: left;
+  outline: 0px #ffff !important;
+}
+
+.addvendor-btn i,
+.addbusiness-btn i,
+.addfunction-btn i,
+.addsubfunction-btn i,
+.addrole-btn i,
+.adddesignation-btn i,
+.addregion-btn i,
+.addstate-btn i,
+.addlocation-btn i,
+.addsublocation-btn i,
+.addgender-btn i,
+.addgroup-btn i{
+  padding: 3px;
+  font-size: 16px;
+  color: var(--sidebar-forecolor);
+}
+.addvendor-btn span.text,
+.addbusiness-btn span.text,
+.addfunction-btn span.text,
+.addsubfunction-btn span.text,
+.addrole-btn span.text,
+.adddesignation-btn span.text,
+.addregion-btn span.text,
+.addstate-btn span.text,
+.addlocation-btn span.text,
+.addsublocation-btn span.text,
+.addgender-btn span.text,
+.addgroup-btn span.text{
+  padding: 3px;
+}
+
+
+
+
+
+
+
+
+.addbusiness_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.addbusiness_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 10%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.addbusiness_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.addbusiness_form_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  height: 180;
+}
+
+.addbusiness_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.addbusiness_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.addfunction_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.addfunction_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 10%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.addfunction_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.addfunction_form_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  height: 250px;
+  overflow: hidden;
+}
+
+.addfunction_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.addfunction_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.addsubfunction_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.addsubfunction_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 5%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.addsubfunction_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.addsubfunction_form_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  /* height: 180px; */
+}
+
+.addsubfunction_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.addsubfunction_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+
+
+
+
+
+
+.addgender_form_modal::-webkit-scrollbar,
+.addregion_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.addgender_form_modal,
+.addregion_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 10%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.addgender_form_modal-content::-webkit-scrollbar,
+.addregion_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.addgender_form_modal-content,
+.addregion_form_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  height: 180;
+}
+
+.addgender_form_modal_header,
+.addregion_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.addgender_form_modal_footer,
+.addregion_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+
+
+
+.adddesignation_form_modal::-webkit-scrollbar {
+  display: none;
+}
+  
+.adddesignation_form_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed; 
+  z-index: 9000 !important; 
+  padding-top: 3%; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5); 
+}
+
+.adddesignation_form_modal-content::-webkit-scrollbar {
+  display: none;
+}
+ 
+.adddesignation_form_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 20px;
+  /* border: 1px solid #888; */
+  width: 60%;
+  overflow: auto;
+  /* height: 180px; */
+}
+
+.adddesignation_form_modal_header{
+  /* background-color: #1A1F23; */
+  background-color: var(--primary-color);
+  color: var(--sidebar-forecolor);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 60%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+.adddesignation_form_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 60%;
+  height: 60px;
+}
+
+
+/* #search-emp-panel{
+
+} */
+
+.search-emp-panel_modal::-webkit-scrollbar {
+  display: none;
+}
+
+.search-emp-panel_modal {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  display: none; 
+  position: fixed;
+  z-index: 9000 !important;
+  padding-top: 7rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* background-color: rgb(0,0,0); */
+  background-color: rgba(0,0,0,0.3);
+}
+
+
+.search-emp-panel_modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.search-emp-panel_modal-content {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  width: 40%;
+  overflow: auto;
+  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.search-emp-panel_modal-content span i{
+  position: absolute; 
+  color: var(--primary-forecolor); 
+  font-size: 18px; 
+  padding: 11px 10px 10px 15px;
+}
+
+.search-emp-panel_modal-content input{
+  border: none;     
+  border-radius: 7px;
+  outline-width: 0px;
+  /* background: #F7F7FB;  */
+  width: 100%; 
+  padding: 10px; 
+  padding-left: 55px;
+  box-shadow: 0px 1px 3px 0px lightgrey;
+}
+
+.search-emp-panel-close {
+  color: var(--sidebar-forecolor);
+  float: right;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 0.4;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  transition: 0.3s ease;
+}
+  
+.search-emp-panel-close:hover,
+.search-emp-panel-close:focus {
+  /* color: var(--ter); */
+  transform: scale(1.1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.search-emp-panel_modal_header{
+  /* background-color: #1A1F23; */
+  /* background-color: var(--primary-color); */
+  color: var(--sidebar-forecolor);
+  background-color: var(--primary-color);
+  font-size: 20px;
+  margin: auto;
+  padding: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 40%;
+  line-height: 0.6;
+  height: 45px;
+} 
+
+
+.search-emp-panel_modal_footer{
+  background-color: var(--sidebar-forecolor);
+  margin: auto;
+  padding: 15px;
+  padding-top: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: 40%;
+  height: 60px;
+  text-align: center;
+}
+
+.search-emp-panel_modal_header,
+.search-emp-panel_modal-content,
+.search-emp-panel_modal_footer{
+  width: 80vw;
+}
+
+/* .search-emp-panel_modal-content{
+  height: 80px;
+} */
+
+/* .search-emp-panel_modal{
+  padding-top: 10%;
+} */
+
+.search-emp-contents{
+  padding:35px;
+  /* padding-top: 10px; */
+  background: #ffff;
+  box-shadow: 0px 1px 3px 0px lightgrey;
+}
+
+
+.search-emp-contents-flex >div{  
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-emp-contents-flex div small{
+  color: var(--primary-color);
+}
+
+.view_modal_labels{
+  border-bottom: 1px solid gray; 
+  color: gray;
+}

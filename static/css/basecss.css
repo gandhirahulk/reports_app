@@ -1,0 +1,1077 @@
+@import "basemedia.css";
+:root {
+  --primary-color: #bf0711;
+  --secondary-color: #CA161C;
+  --tertiary-color:#DA2F2F;
+  --hamburger-color:#7A0307;
+  --primary-forecolor:#1A2421;
+  --secondary-forecolor:#D3D3D3;
+  --sidebar-forecolor:#F5F5FA;
+  --topnav-color: #ffffff;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  /* font-family: sans-serif; */
+}
+
+    body::-webkit-scrollbar {
+      display: none;
+      
+    }
+
+    body{
+    /* background: #f4f3ee; */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background: var(--sidebar-forecolor) !important;
+    /* font-family: sans-serif; */
+    font-size: 16px;
+    overflow: auto;
+    overflow-x: hidden;
+    }
+
+#preloader{
+  width: calc(100% - 26vw);
+  margin-top: 70px;
+  margin-left: 25vw;
+  background: #fff url(../images/preloader_trail.gif) no-repeat center;
+  position: fixed;
+  z-index: 999;
+}
+  
+    
+    .wrapper .sidebar {
+      background-color: var(--primary-color);
+    } 
+ 
+
+    i {
+      margin-left: 0px !important;
+      display: inline-block;
+      font-size: 20px;
+    }
+
+    .wrapper .top_navbar{
+    height: 60px;
+    display: flex;
+    position: fixed;
+    /* top: 10px; if margin needed uncomment this and fix top of sidebar */
+    }
+
+    .wrapper .top_navbar .top_menu{
+      /* width: calc(100% - 70px); for margin uncomment */ 
+      background: #fff;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    }
+
+    .wrapper .top_navbar .top_menu .hamburger{
+    width: 65px;
+    padding: 20px;
+    cursor: pointer;
+    transition: transform .2s;
+ 
+    }
+
+    .wrapper .top_navbar .top_menu .hamburger div{
+      width: 23px;
+      height: 2px;
+      background: var(--hamburger-color);
+      margin: 4px 0;
+      border-radius: 10px;
+    }
+
+    .wrapper .top_navbar .top_menu .hamburger:hover{
+  
+      transform: scale(1.1);
+      /* border-radius: 50%; */
+      /* background: var(--sidebar-forecolor); */
+      /* width: 50px; */
+
+     
+    }
+
+    .wrapper .top_navbar .top_menu .hamburger:hover div{
+      border-radius: 10px;
+      background: var(--hamburger-color);
+      
+    }
+
+/* dont delete this
+    .wrapper .top_navbar .top_menu .logo{
+  
+      padding-left: 2%;
+    } */
+
+    .wrapper .top_navbar .top_menu .logo{
+  
+      width: 90%;
+    }
+
+
+
+    .wrapper .top_navbar .top_menu .logo a img{
+    
+    max-width: 55px;
+    
+    }
+
+    .wrapper .top_navbar .top_menu .search_section{
+      width: 250%;
+    }
+
+    .wrapper .top_navbar .top_menu .search_section i{
+      position: absolute; 
+      color: var(--primary-forecolor); 
+      font-size: 18px; 
+      padding: 11px 10px 10px 15px;
+    }
+
+    .wrapper .top_navbar .top_menu .search_section input{
+      border: none;     
+      border-radius: 7px;
+      outline-width: 0px;
+      background: #F7F7FB; 
+      width: 100%; 
+      padding: 10px; 
+      padding-left: 55px;
+    }
+
+    .wrapper .top_navbar .top_menu div i{
+      transition: transform .3s;
+    }
+    .wrapper .top_navbar .top_menu div i:hover{
+        transform: scale(1.1);
+        color: var(--primary-color) !important;
+        
+    }
+
+
+    .wrapper .top_navbar .top_menu ul{
+    display: flex;
+    float: right;
+    }
+
+    .wrapper .top_navbar .top_menu ul li{
+      display: inline;
+    }
+
+    .wrapper .top_navbar .top_menu .logged_user{
+      width: 100%;
+      padding-left: 10%;
+      display: flex;
+      flex-flow: row;
+
+
+  }
+
+  
+
+  .wrapper .top_navbar .top_menu .logged_user div a{
+      text-decoration: none;
+      font-size: 16px;
+      padding: 5px;
+  }
+    
+    .wrapper .top_navbar .top_menu ul li .logged_in_user_name{
+      font-size: 14px;
+      /* font-family: sans-serif; */
+      color: var(--primary-forecolor);
+      margin-top: 18px;
+    }
+
+    .wrapper .top_navbar .top_menu ul li .logged_in_user_name div span a{
+      color: var(--primary-color);
+    }
+    .wrapper .top_navbar .top_menu ul li .logged_in_user_uid{
+      font-size: 14px;
+      /* font-family: sans-serif; */
+      line-height: 10px;
+      padding-top: 5px;
+      color: var(--primary-forecolor);
+    }
+ 
+    /* option 1 for search */
+    .wrapper .top_navbar .top_menu input{
+      border: none;          
+      border-radius: 10px;
+      outline-width: 0px;
+      background: var(--sidebar-forecolor); 
+      width: 50%; 
+      padding: 10px; 
+      padding-left: 55px;
+      transition: 0.7s ease;
+    
+    }
+
+    .wrapper .top_navbar .top_menu input:focus{
+      background: #fff !important;
+      box-shadow: 0px 1px 3px 0px lightgrey;
+      /* transform: scale(1); */
+    }
+
+    /* option2 for search */
+    /* .wrapper .top_navbar .top_menu input{
+      border: none !important;   
+      outline-width: 0px !important;
+      width: 50% !important; 
+      padding: 10px !important; 
+      padding-left: 55px !important;
+      background: #ffffff !important; 
+      border-bottom: 1px solid lightgray !important;
+      padding-bottom: 2px !important;
+    }
+    .wrapper .top_navbar .top_menu input:hover{
+      background: #fff !important;
+    } */
+
+    .wrapper .top_navbar .top_menu input::placeholder{
+      padding: 0px;
+    }
+
+
+    .wrapper .top_navbar .top_menu ul li a .profile{
+      display: block;
+    /* margin: 0px 10px;
+    width: 60px;
+    height: 60px; */
+    margin: 0px 15px;
+    width: 45px;
+    height: 45px;
+    line-height: 35px;
+    margin-top: 15px;
+    border-radius: 50%;
+    }
+    
+    .wrapper .top_navbar .top_menu ul li a img:last-child {
+      display: none;  
+    }
+    .wrapper .top_navbar .top_menu ul li a:hover img:last-child {
+      display: block;  
+    }
+    .wrapper .top_navbar .top_menu ul li a:hover img:first-child {
+      display: none;  
+      /* opacity: 0.5; */
+    }
+
+    .wrapper .top_navbar .top_menu ul li i{
+      display: none;
+    }
+
+
+/* ------- */
+
+.wrapper .sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+    .wrapper .sidebar{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    position: fixed;
+    /* left: 10px; for margin uncomment this */
+    top:60px; /*for margin uncomment this */
+    background: var(--primary-color);
+    width: 24vw;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    overflow: auto;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    }
+
+
+
+    .wrapper .sidebar ul li{
+      border-bottom: 1px double var(--sidebar-forecolor);
+    }
+
+    .wrapper .sidebar ul li:hover{
+      background: var(--tertiary-color);
+    }
+
+    .wrapper .sidebar ul li ul li:hover{
+      background: var(--primary-color);
+    }
+
+    .wrapper .sidebar ul li ul li ul li:hover{
+      background: var(--secondary-color);
+    }
+
+    .wrapper .sidebar ul li ul li{
+      border-bottom: 0px;
+    }
+
+
+
+    .wrapper .sidebar ul li a{
+        display: block;
+        padding: 18px;
+        padding-left: 15px;
+        position: relative;
+        color: var(--sidebar-forecolor);
+        white-space: nowrap;
+    }
+
+
+
+    .wrapper .sidebar ul li a:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--secondary-forecolor);
+    display: none;
+    }
+
+    .wrapper .sidebar ul li a span.menu-icon{
+    margin-right: 4px;
+    display: inline-block;
+    }
+
+    .wrapper .sidebar ul li a span.menu-title{
+    display: inline-block;
+    font-size: 16px;
+
+    }
+
+    .wrapper .sidebar ul li a span.sub-menu-arrow i{
+      float: right;
+      font-size: 12px !important;
+      line-height: 2;
+    }
+    .wrapper .sidebar ul li.inactive a span.sub-menu-arrow i{
+      float: right;
+      
+    }
+
+    .wrapper .sidebar ul li ul li a span.menu-title{
+      display: inline-block;
+      font-size: 16px;
+  
+      }
+      .wrapper .sidebar ul li ul li a {
+        white-space: nowrap;
+      }
+      
+    
+      .wrapper .sidebar ul li ul li a span.sub-menu-nested-arrow i{
+        float: right;
+        font-size: 12px !important;
+        line-height: 2;
+      }
+      .wrapper .sidebar ul li ul li.inactive a span.sub-menu-nested-arrow i{
+        float: right;
+        
+      }
+    
+    .wrapper .sidebar ul li ul li a{
+      padding: 18px;
+      padding-left: 40px;
+      text-decoration: none !important;
+      color: var(--sidebar-forecolor);
+     
+    }
+    .wrapper .sidebar ul li ul li a:hover{
+      text-decoration: none !important;
+     
+    }
+
+
+    .wrapper .sidebar ul li ul li{
+      display: block;
+      position: relative;
+      color: var(--sidebar-forecolor);
+      white-space: nowrap;
+  }
+
+
+    .wrapper .sidebar ul li ul li ul li a{
+      padding: 15px;
+      text-decoration: none !important;
+      color: var(--sidebar-forecolor);
+     
+    }
+    .wrapper .sidebar ul li ul li a:hover{
+      text-decoration: none !important;
+     
+    }
+
+
+    .wrapper .sidebar ul li a:hover{
+      color: #FFF9F1;
+    }
+    
+    .active{
+    color: var(--sidebar-forecolor);
+    }
+
+    .wrapper .sidebar ul li a.active li:hover{
+      color: #FFF9F1;
+      }
+      
+    .hidelist{
+      display: none; 
+      color: var(--sidebar-forecolor);   
+      padding-left: 20px;      
+    }
+
+    .showlist{
+      display: inline-block;
+      color: var(--sidebar-forecolor);
+      background-color: var(--secondary-color);
+      width: 100%;
+    }
+    .showlist li{          
+      color: var(--sidebar-forecolor);
+      padding-left: 40px;
+    }
+
+    .wrapper .sidebar ul li ul.hidelist{
+      padding-left: 0px !important;
+    }
+
+    .hidesublist{
+      display: none; 
+      color: var(--sidebar-forecolor);  
+    }
+
+    .showsublist{
+      display: inline-block;
+      color: var(--sidebar-forecolor);
+      background-color: var(--tertiary-color);
+      width: 100%;
+    }
+    .showsublist li{          
+      color: var(--sidebar-forecolor);
+      padding-left: 65px;
+    }
+
+    .wrapper.collapse .showsublist{
+      display: none; 
+      color: var(--sidebar-forecolor); 
+    }
+
+    .stay{    
+      display: inline-block;
+      color: #F2F2F2;      
+      padding: 15px;
+      padding-left: 30px;
+    }
+
+    .wrapper .sidebar ul li a:hover:before,
+    .wrapper .sidebar ul li a.active:before{
+    display: block;
+    }
+
+    .wrapper .sidebar ul li ul li:hover{
+      color: #FFF9F1;
+    }
+
+    .wrapper .main_container{
+    width: calc(100% - 26vw);
+    margin-top: 70px;
+    margin-left: 25vw;
+    /* padding: 15px; */
+    transition: all 0.3s ease;
+    }
+
+   
+    .wrapper .main_container .item{
+    background: #fff;
+    margin-bottom: 10px;
+    width: inherit;
+    /* padding: 15px; */
+    font-size: 14px;
+    line-height: 22px;
+    }
+
+    .tab_content_block_cls::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab_content_block_cls{
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      top:115px;
+      /* width: inherit; */
+      position: fixed;
+      overflow: auto;
+      overflow-x: hidden;
+      height: 82%;
+
+    }
+
+
+    .collapse:not(.show) {
+      display: block !important;
+  }
+
+  /* .wrapper.collapse #tab_content_block{
+    width: calc(100% - 90px);
+  } */
+    
+    .wrapper.collapse .top_navbar .top_menu .hamburger{
+      /* background: #F5F5FA; */
+
+      transition: transform .2s;
+      transform: rotate(90deg);
+    }
+
+    .wrapper.collapse .top_navbar .top_menu .hamburger div{
+      background: var(--hamburger-color);
+    }
+    
+    .wrapper.collapse .top_navbar .top_menu .hamburger:hover{
+      transform: scale(1.1);
+      transform: rotate(90deg);
+    }
+
+    .wrapper.collapse .top_navbar .top_menu .hamburger div:hover{
+
+      background: var(--hamburger-color);
+      
+    }
+
+    .wrapper.collapse .sidebar{
+    width: 65px;
+    align-items: center;
+    }
+
+    .wrapper.collapse .sidebar ul li a{
+    text-align: center; 
+    }
+
+    .wrapper.collapse .sidebar ul li a span.menu-title{
+      display: none;
+    }
+
+    .wrapper.collapse .sidebar ul li ul{
+      display: none;
+    }
+
+    .wrapper.collapse .sidebar ul li a span.menu-icon{
+    margin: 0;
+    display: inline-block;
+    }
+
+    .wrapper.collapse .sidebar ul li a span.menu-title{
+    display: none;
+    }
+
+    .wrapper.collapse .sidebar ul li a span.sub-menu-arrow i{
+      display: none;
+    }
+  
+
+    .wrapper.collapse .main_container{
+      width: calc(100% - 90px);
+      margin-left: 75px;
+    }
+ 
+
+
+    /* change to js */
+
+    .wrapper.collapse .showlist{
+      display: none; 
+      color: #F2F2F2; 
+      padding-left: 30px;   
+    }
+
+    .wrapper.collapse .active{
+      background-color: var(--primary-color);
+      color: #F2F2F2;
+    }
+    .wrapper .sidebar ul li a.active{
+      background-color: var(--secondary-color);
+      color: #F2F2F2;
+    }
+    .wrapper .sidebar ul li a.active li:hover{
+      color: #FFF9F1;
+    }
+
+    .fas{
+      line-height: none !important;
+    }
+
+
+/* theme */
+
+    .theme-heading{
+      text-align: center;
+  }
+  .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background-color:#fff;
+    }
+    
+    .flex-container > div {
+      /* background-color: var(--sidebar-forecolor); */
+      width: 300px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 16px;
+    }
+  
+    .theme-btn{
+        width: 100px;
+        height: 10px;
+        border: none;
+        /* background-color: var(--sidebar-forecolor); */
+        outline: 0px !important;
+    }
+
+    #requestMenu{
+      padding-left: 0px !important;
+    }
+
+    /* datatable plugin styling */
+    #company_table_filter label input,
+    #company_table_length label select,
+    #company_table_length label select option,
+    #group_table_filter label input,
+    #group_table_length label select,
+    #group_table_length label select option,
+    #groupassign-tbl_filter label input,
+    #groupassign-tbl_length label select,
+    #groupassign-tbl_length label select option,
+    #workflow-tbl_filter label input,
+    #workflow-tbl_length label select,
+    #workflow-tbl_length label select option,
+    #roleassign-tbl_filter label input,
+    #roleassign-tbl_length label select,
+    #roleassign-tbl_length label select option,
+    #emptbl_filter label input,
+    #emptbl_length label select,
+    #emptbl_length label select option,
+    #emphistory_filter label input,
+    #emphistory_length label select,
+    #emphistory_length label select option,
+    #vendor_table_filter label input,
+    #business_table_filter label input,
+    #role_table_filter label input,
+    #strole_table_filter label input,
+    #function_table_filter label input,
+    #subfunction_table_filter label input,
+    #team_table_filter label input,
+    #group1_table_filter label input,
+    #group_table_filter label input,
+    #designation_table_filter label input,
+    #region_table_filter label input ,
+    #state_table_filter label input,
+    #location_table_filter label input,
+    #sublocation_table_filter label input,
+    #gender_table_filter label input,
+    #vendor_table_length label select,
+    #business_table_length label select,
+    #role_table_length label select,
+    #strole_table_length label select,
+    #function_table_length label select,
+    #subfunction_table_length label select,
+    #team_table_length label select,
+    #group1_table_length label select,
+    #designation_table_length label select,
+    #region_table_length label select ,
+    #state_table_length label select,
+    #location_table_length label select,
+    #sublocation_table_length label select,
+    #gender_table_length label select,
+    #vendor_table_length label select option,
+    #business_table_length label select option,
+    #role_table_length label select option,
+    #strole_table_length label select option,
+    #function_table_length label select option,
+    #subfunction_table_length label select option,
+    #team_table_length label select option,
+    #group1_table_length label select option,
+    #designation_table_length label select option,
+    #region_table_length label select option ,
+    #state_table_length label select option,
+    #location_table_length label select option,
+    #sublocation_table_length label select option,
+    #gender_table_length label select option{
+      border: 1px solid lightgray;
+    }
+
+    #company_table_filter label input:focus,
+    #company_table_length label select:focus,
+    #company_table_length label select option:focus,
+    #group_table_filter label input:focus,
+    #group_table_length label select:focus,
+    #group_table_length label select option:focus,
+    #group1_table_length label select:focus,
+    #groupassign-tbl_filter label input:focus,
+    #groupassign-tbl_length label select:focus,
+    #groupassign-tbl_length label select option:focus,
+    #workflow-tbl_filter label input:focus,
+    #workflow-tbl_length label select:focus,
+    #workflow-tbl_length label select option:focus,
+    #roleassign-tbl_filter label input:focus,
+    #roleassign-tbl_length label select:focus,
+    #roleassign-tbl_length label select option:focus,
+    #emphistory_filter label input:focus,
+    #emphistory_length label select:focus,
+    #emphistory_length label select option:focus,
+    #vendor_table_filter label input:focus,
+    #business_table_filter label input:focus,
+    #role_table_filter label input:focus,
+    #strole_table_filter label input:focus,
+    #function_table_filter label input:focus,
+    #subfunction_table_filter label input:focus,
+    #team_table_filter label input:focus,
+    #group1_table_filter label input:focus,
+    #group_table_filter label input:focus,
+    #designation_table_filter label input:focus,
+    #region_table_filter label input:focus ,
+    #state_table_filter label input:focus,
+    #location_table_filter label input:focus,
+    #sublocation_table_filter label input:focus,
+    #gender_table_filter label input:focus,
+    #vendor_table_length label select:focus,
+    #business_table_length label select:focus,
+    #role_table_length label select:focus,
+    #strole_table_length label select:focus,
+    #function_table_length label select:focus,
+    #subfunction_table_length label select:focus,
+    #team_table_length label select:focus,
+    #designation_table_length label select:focus,
+    #region_table_length label select:focus ,
+    #state_table_length label select:focus,
+    #location_table_length label select:focus,
+    #sublocation_table_length label select:focus,
+    #gender_table_length label select:focus,
+    #vendor_table_length label select option:focus,
+    #business_table_length label select option:focus,
+    #role_table_length label select option:focus,
+    #strole_table_length label select option:focus,
+    #function_table_length label select option:focus,
+    #subfunction_table_length label select option:focus,
+    #team_table_length label select option:focus,
+    #group1_table_length label select option:focus,
+    #designation_table_length label select option:focus,
+    #region_table_length label select option:focus ,
+    #state_table_length label select option:focus,
+    #location_table_length label select option:focus,
+    #sublocation_table_length label select option:focus,
+    #gender_table_length label select option:focus{
+      outline: 1px solid black;
+    }
+
+    #company_table_length label select option:hover,
+    #group_table_length label select option:hover,
+    #groupassign-tbl_length label select option:hover,
+    #workflow-tbl_length label select option:hover,
+    #roleassign-tbl_length label select option:hover,
+    #vendor_table_length label select option:hover,
+    #business_table_length label select option:hover,
+    #role_table_length label select option:hover,
+    #strole_table_length label select option:hover,
+    #function_table_length label select option:hover,
+    #subfunction_table_length label select option:hover,
+    #team_table_length label select option:hover,
+    #group1_table_length label select option:hover,
+    #designation_table_length label select option:hover,
+    #region_table_length label select option:hover ,
+    #state_table_length label select option:hover,
+    #location_table_length label select option:hover,
+    #sublocation_table_length label select option:hover,
+    #gender_table_length label select option:hover{
+      background-color: lightgray;
+      outline: 1px solid black;
+    }
+
+    #company_table_paginate span .paginate_button,
+    #group_table_paginate span .paginate_button,
+    #groupassign-tbl_paginate span .paginate_button,
+    #workflow-tbl_paginate span .paginate_button,
+    #roleassign-tbl_paginate span .paginate_button,
+    #vendor_table_paginate span .paginate_button,
+    #business_table_paginate span .paginate_button,
+    #role_table_paginate span .paginate_button,
+    #strole_table_paginate span .paginate_button,
+    #groupassign-tbl_paginate span .paginate_button,
+    #workflow-tbl_paginate span .paginate_button,
+    #groupunassign-tbl_paginate span .paginate_button,
+    #roleassign-tbl_paginate span .paginate_button,
+    #roleunassign-tbl_paginate span .paginate_button,
+    #allemp-tbl_paginate span .paginate_button,
+    #function_table_paginate span .paginate_button,
+    #subfunction_table_paginate span .paginate_button,
+    #team_table_paginate span .paginate_button,
+    #group1_table_paginate span .paginate_button,
+    #designation_table_paginate span .paginate_button,
+    #region_table_paginate span .paginate_button ,
+    #state_table_paginate span .paginate_button,
+    #location_table_paginate span .paginate_button,
+    #sublocation_table_paginate span .paginate_button,
+    #gender_table_paginate span .paginate_button,
+    #emphistory_paginate span .paginate_button,
+    #emptbl_paginate span .paginate_button{
+      padding: 3px;
+      background: var(--topnav-color);
+      /* outline: 1px solid var(--primary-color); */
+      color: var(--primary-forecolor) !important;
+      border: none
+    }
+
+  
+
+    #company_table_paginate span .paginate_button:hover,
+    #group_table_paginate span .paginate_button:hover,
+    #groupassign-tbl_paginate span .paginate_button:hover,
+    #workflow-tbl_paginate span .paginate_button:hover,
+    #roleassign-tbl_paginate span .paginate_button:hover,
+    #strole_table_paginate span .paginate_button:hover,
+    #workflow-tbl_paginate span .paginate_button:hover,
+    #groupunassign-tbl_paginate span .paginate_button:hover,
+    #roleassign-tbl_paginate span .paginate_button:hover,
+    #roleunassign-tbl_paginate span .paginate_button:hover,
+    #allemp-tbl_paginate span .paginate_button:hover,
+    #emphistory_paginate span .paginate_button:hover,
+    #vendor_table_paginate span .paginate_button:hover,
+    #business_table_paginate span .paginate_button:hover,
+    #role_table_paginate span .paginate_button:hover,
+    #function_table_paginate span .paginate_button:hover,
+    #subfunction_table_paginate span .paginate_button:hover,
+    #team_table_paginate span .paginate_button:hover,
+    #group1_table_paginate span .paginate_button:hover,
+    #designation_table_paginate span .paginate_button:hover,
+    #region_table_paginate span .paginate_button:hover ,
+    #state_table_paginate span .paginate_button:hover,
+    #location_table_paginate span .paginate_button:hover,
+    #sublocation_table_paginate span .paginate_button:hover,
+    #gender_table_paginate span .paginate_button:hover{
+      background: var(--primary-color);
+      /* outline: 1px solid var(--primary-color); */
+      color: var(--topnav-color) !important;
+    }
+
+   
+
+
+
+    #company_table,
+    #group_table,
+    #groupassign-tbl,
+    #roleassign-tbl,
+    #strole_table,
+    #workflow-tbl,
+    #groupunassign-tbl,
+    #roleassign-tbl,
+    #roleunassign-tbl,
+    #allemp-tbl,
+    #vendor_table,
+    #business_table,
+    #role_table,
+    #function_table,
+    #subfunction_table,
+    #team_table,
+    #group1_table,
+    #designation_table,
+    #region_table ,
+    #state_table,
+    #location_table,
+    #sublocation_table,
+    #gender_table ,
+    #emptbl {
+   /* display: block; */
+      border-collapse: collapse;
+      font-size: 14px;
+      width: 100%;
+      overflow-x: auto !important;
+      /* white-space: nowrap; */
+    }
+
+    #company_table th,
+    #group_table th,
+    #groupassign-tbl th,
+    #roleassign-tbl th,
+    #strole_table th,
+    #workflow-tbl th,
+    #groupunassign-tbl th,
+    #roleassign-tbl th,
+    #roleunassign-tbl th,
+    #allemp-tbl th,
+    #vendor_table th,
+    #business_table th,
+    #role_table th,
+    #function_table th,
+    #subfunction_table th,
+    #team_table th,
+    #group1_table th,
+    #designation_table th,
+    #region_table th ,
+    #state_table th,
+    #location_table th,
+    #sublocation_table th,
+    #gender_table th{
+      border-top: 8px solid #fff;
+      background-color: var(--primary-color);
+      color: var(--sidebar-forecolor);
+      font-size: 14px;
+      padding: 5px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+
+    
+    #emptbl th{
+      
+      background-color: var(--primary-color);
+      color: var(--sidebar-forecolor);
+      font-size: 14px;
+      padding: 3px;
+      text-align: center;
+      
+      border-right: 1px solid #ddd;
+    }
+
+  
+
+    #company_table td:last-child,
+    #group_table td:last-child,
+    #groupassign-tbl td:last-child,
+    #roleassign-tbl td:last-child,
+    #strole_table td:last-child,
+    #workflow-tbl td:last-child,
+    #groupunassign-tbl td:last-child,
+    #roleassign-tbl td:last-child,
+    #roleunassign-tbl td:last-child,
+    #allemp-tbl td:last-child,
+    #vendor_table td:last-child,
+    #business_table td:last-child,
+    #role_table td:last-child,
+    #function_table td:last-child,
+    #subfunction_table td:last-child,
+    #team_table td:last-child,
+    #group1_table td:last-child,
+    #designation_table td:last-child,
+    #region_table  td:last-child,
+    #state_table td:last-child,
+    #location_table td:last-child,
+    #sublocation_table td:last-child,
+    #gender_table td:last-child ,
+    #emptbl  td:last-child{
+      border-right: 1px solid #ddd;
+      padding-left: 0px;
+    }
+    
+    #company_table td,
+    #group_table td,
+    #groupassign-tbl td,
+    #roleassign-tbl td,
+    #strole_table td,
+    #workflow-tbl td,
+    #groupunassign-tbl td,
+    #roleassign-tbl td,
+    #roleunassign-tbl td,
+    #allemp-tbl td,
+    #vendor_table td,
+    #business_table td,
+    #role_table td,
+    #function_table td,
+    #subfunction_table td,
+    #team_table td,
+    #group1_table td,
+    #designation_table td,
+    #region_table  td,
+    #state_table td,
+    #location_table td,
+    #sublocation_table td,
+    #gender_table td ,
+    #emptbl  td{
+      text-align: left;
+      padding: 1px;
+      font-size: 14px;
+      border-left: 1px solid #ddd;
+      padding-left: 15px;
+      /* border: 1px solid #ddd; */
+      
+    }
+    #company_table tr,
+    #group_table tr,
+    #groupassign-tbl tr,
+    #roleassign-tbl tr,
+    #strole_table tr,
+    #workflow-tbl tr,
+    #groupunassign-tbl tr,
+    #roleassign-tbl tr,
+    #roleunassign-tbl tr,
+    #allemp-tbl tr,
+    #vendor_table tr,
+    #business_table tr,
+    #role_table tr,
+    #function_table tr,
+    #subfunction_table tr,
+    #team_table tr,
+    #group1_table tr,
+    #designation_table tr,
+    #region_table tr ,
+    #state_table tr,
+    #location_table tr,
+    #sublocation_table tr,
+    #gender_table tr,
+    #emptbl tr{
+      border-bottom: 1px solid lightgray;
+    }
+
+    #company_table tr td button i,
+    #group_table tr td button i,
+    #groupassign-tbl tr td button i,
+    #roleassign-tbl tr td button i,
+    #strole_table tr td button i,
+    #workflow-tbl tr td button i,
+    #groupunassign-tbl tr td button i,
+    #roleassign-tbl tr td button i,
+    #roleunassign-tbl tr td button i,
+    #allemp-tbl tr td button i,
+    #vendor_table tr td button i,
+    #business_table tr td button i,
+    #role_table tr td button i,
+    #function_table tr td button i,
+    #subfunction_table tr td button i,
+    #team_table tr td button i,
+    #group1_table tr td button i,
+    #designation_table tr td button i,
+    #region_table tr td button i ,
+    #state_table tr td button i,
+    #location_table tr td button i,
+    #sublocation_table tr td button i,
+    #gender_table tr td button i,
+    #emptbl tr td button i{
+      font-size: 12px !important;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+
+.theme-colors-btn{
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50% !important;
+  background: var(--primary-color);
+}
+
+
+.resize-tab-content{
+  width: 1010px;
+}
+
+.css-tooltip{
+  color: var(--primary-color) !important;
+}
