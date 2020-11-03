@@ -17,51 +17,49 @@
                 {% csrf_token %}
                 <div class="response-container">
                     <div class="reponse-inner-header"><label for="">Dimensions : </label></div>
-                    <div class="response-inner-content">
+                    <div class="response-inner-content" id="checkboxes">
                         {% for dimension in dimensions %}
-                        <div class="multiselect">
+                            <div class="multiselect">
                                 <div class="selectBox"
-                                    onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
+                                     onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
                                     <select name="dimensions" class="dimensions"
                                             id="dimensions--{{ forloop.counter }}" style="font-size: inherit">
                                         <option>{{ dimension.name }}</option>
                                     </select>
                                     <div class="overSelect"></div>
                                 </div>
-                                <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown" style="display: none;">
-                                    {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}
-                                        {% define var1|add:'--'|add:var2|get_sub_field as query_set %}
-                                        {% for name,fk in query_set.query_set.items %}
-                                            <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
-                                                style="display: block; ">
-                                                <input type="checkbox" class="{{ dimension.name }}"
-                                                    name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
-                                                    id="{{ dimension.name }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
-                                                    onclick="fetch_dependent_field(this.id)"/> <label for="">{{ name }}</label>
-                                            </label>
-                                        {% endfor %}
-                                    {% endwith %}
+                                <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown"
+                                     style="display: none;">
+                                    {% define dimension.fk_table.db_table_name|get_sub_field as query_set %}
+                                    {% for name,fk in query_set.query_set.items %}
+                                        <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
+                                               style="display: block; ">
+                                            <input type="checkbox" class="{{ dimension.name }}"
+                                                   name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
+                                                   id="{{ dimension.name }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                                   onclick="fetch_dependent_field(this.id)"/> {{ name }}</label>
+                                    {% endfor %}
                                 </div>
                             </div>
-                        
-                    {% endfor %}
+
+                        {% endfor %}
                     </div>
-                    
+
                 </div>
                 <div class="response-container" style="width: 37%;">
                     <div class="reponse-inner-header"><label for="">Report Type : </label></div>
                     <div class="response-inner-content">
                         <div>
                             <select data-placeholder="Begin typing a name to filter..."
-                            class='sub_table' name="report type" id="type_code">
-                                    {% for report in report_types %}
-                                        <option value="{{ report.name }}" style="outline: none !important;">
-                                            {{ report.name }}
-                                        </option>
-                                    {% endfor %}
+                                    class='sub_table' name="report type" id="type_code">
+                                {% for report in report_types %}
+                                    <option value="{{ report.name }}" style="outline: none !important;">
+                                        {{ report.name }}
+                                    </option>
+                                {% endfor %}
                             </select>
                         </div>
-                  
+
                     </div>
                 </div>
                 <div class="response-container" style="width: 37%;">
@@ -75,69 +73,69 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        
+
                     </div>
                 </div>
             </form>
-            
-    
+
+
             <button type="submit" class="basic-save-btn" id="render_table" name="go_button">GO</button>
-           
-    
+
+
         </fieldset>
-       
+
     </div>
     <input type="checkbox" id="partial_select_await" hidden>
 
-  
+
     <div class="table-div">
         <a href="" class="export-btn">Export <i class="fas fa-file-export"></i></a>
 
         <table class="data_table" id="main_table" style="overflow-x: auto;white-space: nowrap;">
-        
+
             <thead>
             <tr>
-                <th  >UID</th>
-                <th  >Employee Name</th>
-                <th  >Entity</th>
-                <th  >Vendor</th>
-                <th  >Department</th>
-                <th  >Function</th>
-                <th  >Team</th>
-                <th  >Sub Team</th>
-                <th  >Region</th>
-                <th  >State</th>
-                <th  >Location</th>
-                <th  >Employee Type</th>
-                <th  >Gender</th>
-                <th  >CTC Slabs</th>
-                <th  >Employment Tenure</th>
-                <th  >Reason For Exit</th>
-                <th  >Exit Type</th>
-                <th  >Age</th>
+                <th>UID</th>
+                <th>Employee Name</th>
+                <th>Entity</th>
+                <th>Vendor</th>
+                <th>Department</th>
+                <th>Function</th>
+                <th>Team</th>
+                <th>Sub Team</th>
+                <th>Region</th>
+                <th>State</th>
+                <th>Location</th>
+                <th>Employee Type</th>
+                <th>Gender</th>
+                <th>CTC Slabs</th>
+                <th>Employment Tenure</th>
+                <th>Reason For Exit</th>
+                <th>Exit Type</th>
+                <th>Age</th>
 
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td  >Dummy UID</td>
-                <td  >Dummy Employee Name</td>
-                <td  >Dummy Entity</td>
-                <td  >Dummy Vendor</td>
-                <td  >Dummy Department</td>
-                <td  >Dummy Function</td>
-                <td  >Dummy Team</td>
-                <td  >Dummy Sub Team</td>
-                <td  >Dummy Region</td>
-                <td  >Dummy State</td>
-                <td  >Dummy Location</td>
-                <td  >Dummy Employee Type</td>
-                <td  >Dummy Gender</td>
-                <td  >Dummy CTC Slabs</td>
-                <td  >Dummy Employment Tenure</td>
-                <td  >Dummy Reason For Exit</td>
-                <td  >Dummy Exit Type</td>
-                <td  >Dummy Age</td>
+                <td>Dummy UID</td>
+                <td>Dummy Employee Name</td>
+                <td>Dummy Entity</td>
+                <td>Dummy Vendor</td>
+                <td>Dummy Department</td>
+                <td>Dummy Function</td>
+                <td>Dummy Team</td>
+                <td>Dummy Sub Team</td>
+                <td>Dummy Region</td>
+                <td>Dummy State</td>
+                <td>Dummy Location</td>
+                <td>Dummy Employee Type</td>
+                <td>Dummy Gender</td>
+                <td>Dummy CTC Slabs</td>
+                <td>Dummy Employment Tenure</td>
+                <td>Dummy Reason For Exit</td>
+                <td>Dummy Exit Type</td>
+                <td>Dummy Age</td>
             </tr>
             </tbody>
         </table>
@@ -157,17 +155,21 @@
 
     <script>
         $('#main_table').dataTable({
-            scrollX : "true",
+            scrollX: "true",
         });
-        $("#main_table").hover(function(){$('.dataTables_scrollBody').attr('style', 'overflow: scroll !important');});
-        $("#main_table").mouseout(function(){$('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');});
+        $("#main_table").hover(function () {
+            $('.dataTables_scrollBody').attr('style', 'overflow: scroll !important');
+        });
+        $("#main_table").mouseout(function () {
+            $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
+        });
         $("#payroll_form").on("submit", function (e) {
             $.post('/payroll/', $(this).serialize(), function (data) {
                 $('.message').html(data.message);
             });
             e.preventDefault();
         });
-        
+
     </script>
 
 
@@ -177,7 +179,7 @@
         function showCheckboxes(element_id) {
             var all = document.getElementsByClassName("checklist-dropdown");
             var len = all.length;
-            for(i=0; i<len; i++){
+            for (i = 0; i < len; i++) {
                 all[i].style.display = "none";
                 expanded = false
             }
@@ -190,36 +192,36 @@
                 expanded = false;
             }
         }
-        
+
     </script>
 
     <script>
         $(document).ready(function () {
             $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
-            $(document).keyup(function(e) {
-            if (e.keyCode == 27){
-                var all = document.getElementsByClassName("checklist-dropdown");
-                var len = all.length;
-                for(i=0; i<len; i++){
-                    all[i].style.display = "none";
-                }
-            }
-            });
-            $(window).click(function(e) {
-                var all = document.getElementsByClassName("checklist-dropdown");
-                var len = all.length;
-                for(i=0; i<len; i++){
-                    if (e.target.id == 'tab_content' || e.target.id == 'response_header' || e.target.id == 'payroll_form'){
+            $(document).keyup(function (e) {
+                if (e.keyCode == 27) {
+                    var all = document.getElementsByClassName("checklist-dropdown");
+                    var len = all.length;
+                    for (i = 0; i < len; i++) {
                         all[i].style.display = "none";
                     }
-                    
                 }
-            }); 
-            
-           
+            });
+            $(window).click(function (e) {
+                var all = document.getElementsByClassName("checklist-dropdown");
+                var len = all.length;
+                for (i = 0; i < len; i++) {
+                    if (e.target.id == 'tab_content' || e.target.id == 'response_header' || e.target.id == 'payroll_form') {
+                        all[i].style.display = "none";
+                    }
+
+                }
+            });
+
+
             $(document).on("click", ".MultiCheckBox", function () {
-               
-                
+
+
                 var detail = $(this).next();
                 detail.show();
             });

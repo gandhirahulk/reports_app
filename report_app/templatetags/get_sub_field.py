@@ -11,9 +11,7 @@ from ..constants import STATUS, ACTIVE
 
 
 @register.filter
-def get_sub_field(field):
-    table = field.split('--')[0]
-    field_name = field.split('--')[1]
+def get_sub_field(table):
     query = getattr(report_app.models, table).objects.filter(**{STATUS: ACTIVE})
     query_set = {}
     pk_set = {}
@@ -29,6 +27,10 @@ def get_sub_field(field):
             pk_set[getattr(field, 'name')] = field.pk
             query_set[getattr(field, 'name')] = getattr(field, str(fk + '_id'))
 
-    query_dict = {'query_set': query_set, 'pk_set': pk_set}
+    if fk =='':
+        for field in query:
+            pk_set[getattr(field, 'name')] = field.pk
+            query_set[getattr(field, 'name')] = field.pk
 
+    query_dict = {'query_set': query_set, 'pk_set': pk_set}
     return query_dict

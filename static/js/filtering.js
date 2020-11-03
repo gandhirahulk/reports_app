@@ -156,7 +156,8 @@ function start_loading() {
     document.getElementsByClassName('group-map-btn-div')[0].style.display = 'none'
 }
 
-function stop_loading() {c
+function stop_loading() {
+    c
     document.getElementById('checkboxes').style.display = 'block'
     document.getElementById('loader').style.display = 'none'
     document.getElementsByClassName('group-map-btn-div')[0].style.display = 'block'
@@ -178,6 +179,7 @@ function fetch_dependent_field(current_id) {
                 let local_class_name = $(this).attr('class');
                 if (local_class_name != null) {
                     if (!class_name_to_id_map.has(local_class_name)) {
+
                         class_name_to_id_map.set(local_class_name, [checkbox_id]);
                     } else {
                         selected_checkboxes = class_name_to_id_map.get(local_class_name);
@@ -198,10 +200,10 @@ function fetch_dependent_field(current_id) {
             }
         }
 
-            console.log(class_name_to_id_map)
 
         let field_map = filter_records(class_name_to_id_map);
-        if(field_map.length == 0) {
+        console.log(field_map)
+        if (field_map.length == 0) {
             field_map['no-selections-made'] = 0
         }
         render_filtered_fields(field_map);
@@ -210,25 +212,25 @@ function fetch_dependent_field(current_id) {
 
 
 let parent_to_child_map = new Map();
-parent_to_child_map.set('department', ['function_category'])
-parent_to_child_map.set('function_category', ['team'])
-parent_to_child_map.set('team', ['sub_team'])
-parent_to_child_map.set('sub_team', ['state'])
-parent_to_child_map.set('state', ['city'])
-parent_to_child_map.set('city', ['location'])
-parent_to_child_map.set('location', ['vendor'])
-parent_to_child_map.set('vendor', ['none'])
+parent_to_child_map.set('Department', ['Function/Category'])
+parent_to_child_map.set('Function/Category', ['Team'])
+parent_to_child_map.set('Team', ['Sub Team'])
+parent_to_child_map.set('Sub Team', ['State'])
+parent_to_child_map.set('State', ['City'])
+parent_to_child_map.set('City', ['Location'])
+parent_to_child_map.set('Location', ['Vendor'])
+parent_to_child_map.set('Vendor', ['none'])
 
 
 let child_to_parent_map = new Map();
-child_to_parent_map.set('vendor', 'location')
-child_to_parent_map.set('location', 'city')
-child_to_parent_map.set('city', 'state')
-child_to_parent_map.set('state', 'sub_team')
-child_to_parent_map.set('sub_team', 'team')
-child_to_parent_map.set('team', 'function_category')
-child_to_parent_map.set('function_category', 'department')
-child_to_parent_map.set('department', 'none')
+child_to_parent_map.set('Vendor', 'Location')
+child_to_parent_map.set('Location', 'City')
+child_to_parent_map.set('City', 'State')
+child_to_parent_map.set('State', 'Sub Team')
+child_to_parent_map.set('Sub Team', 'Team')
+child_to_parent_map.set('Team', 'Function/Category')
+child_to_parent_map.set('Function/Category', 'Department')
+child_to_parent_map.set('Department', 'none')
 
 
 function filter_children(children_name, dependent_fields_map, record_ids, selected_field_array) {
@@ -276,7 +278,7 @@ function fill_dependent_field_map(field_name, dependent_ids, dependent_fields_ma
 
 
 function filter_records(class_name_to_id_map) {
-    let field_names = ['department', 'function_category', 'team', 'sub_team', 'state', 'city', 'location', 'vendor']
+    let field_names = ['Department', 'Function/Category', 'Team', 'Sub Team', 'State', 'City', 'Location', 'Vendor']
     let dependent_fields_map = {}
     let selected_field_array = []
     for (let [key, value] of class_name_to_id_map) {
