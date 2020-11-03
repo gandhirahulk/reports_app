@@ -1,6 +1,13 @@
-@import "basecss.css";
-
-
+:root {
+    --primary-color: #bf0711;
+    --secondary-color: #CA161C;
+    --tertiary-color:#DA2F2F;
+    --hamburger-color:#7A0307;
+    --primary-forecolor:#1A2421;
+    --secondary-forecolor:#D3D3D3;
+    --sidebar-forecolor:#F5F5FA;
+    --topnav-color: #ffffff;
+  }
 
 .tabs_btn,
 .subtabs_btn {

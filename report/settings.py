@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'reports',
         'USER': 'postgres',
-        'PASSWORD': 'associate',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -131,3 +131,20 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 465
+EMAIL_HOST_USER = "workmail052020@gmail.com"
+EMAIL_HOST_PASSWORD = "lbdwewzbbtpjvaiv"
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+# INACTIVE_TIME = 40 * 60
+SESSION_EXPIRE_AT_BROWSER_CLOSE= True
+# SESSION_COOKIE_AGE = INACTIVE_TIME  
+# SESSION_IDLE_TIMEOUT = INACTIVE_TIME 
+
+
+# PASSWORD_RESET_TIMEOUT=1  #ask sir for timeout of reset link without fail
