@@ -114,6 +114,76 @@ class team(models.Model):
     def __str__(self):
         return self.name
 
+class ctc_slab(models.Model):
+    pk_ctc = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    created_by = models.CharField(max_length=100,null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True,null=True)
+    modified_by = models.CharField(max_length=100, null=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True,default=2)
+
+    def __str__(self):
+        return self.name
+
+
+class age(models.Model):
+    pk_age = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    created_by = models.CharField(max_length=100,null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True,null=True)
+    modified_by = models.CharField(max_length=100, null=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True,default=2)
+
+    def __str__(self):
+        return self.name
+
+class exit_type(models.Model):
+    pk_exit_type = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    created_by = models.CharField(max_length=100,null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True,null=True)
+    modified_by = models.CharField(max_length=100, null=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True,default=2)
+
+    def __str__(self):
+        return self.name
+
+class tenure(models.Model):
+    pk_tenure = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    created_by = models.CharField(max_length=100,null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True,null=True)
+    modified_by = models.CharField(max_length=100, null=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True,default=2)
+
+    def __str__(self):
+        return self.name
+
+
+class employment_type(models.Model):
+    pk_type = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    created_by = models.CharField(max_length=100,null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True,null=True)
+    modified_by = models.CharField(max_length=100, null=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True,default=2)
+
+    def __str__(self):
+        return self.name
+
+
+
+
 
 class sub_team(models.Model):
     pk_sub_team = models.AutoField(primary_key=True)

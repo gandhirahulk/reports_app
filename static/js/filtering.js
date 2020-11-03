@@ -41,15 +41,12 @@ function initialize_field_count() {
         }
 
     });
-    // $.each(class_names, function (index, value) {
-    //     render_selected_counter(value)
-    // });
-    // stop_loading()
+
     $(document.getElementById('partial_select_await')).trigger("click");
 }
 
 // trigger initialize count function on windows load
-// window.onload = initialize_field_count;
+window.onload = initialize_field_count;
 
 
 //render filtered fields based on selection
@@ -76,91 +73,6 @@ function render_filtered_fields(data) {
         });
     });
     initialize_field_count()
-}
-
-// increment count on selection
-function increment_counter(class_name) {
-    let all_checkboxes = document.getElementsByClassName(class_name);
-    let total_fields = all_checkboxes.length;
-    let selected_fields = 0;
-    let visible_fields = 0;
-    for (let i = 0; i < total_fields; i++) {
-        if (all_checkboxes[i].checked == true) {
-            selected_fields += 1;
-        }
-        let element_display = $(all_checkboxes[i]).parent().css('display');
-        if (element_display != 'none') {
-            visible_fields += 1;
-        }
-    }
-    return {visible_fields, selected_fields};
-}
-
-
-function render_selected_counter(class_name) {
-    let {visible_fields, selected_fields} = increment_counter(class_name);
-    let tab_button_name = class_name + '-tab';
-    let tab_text = document.getElementById(tab_button_name).textContent;
-    if (tab_text.includes("(")) {
-        tab_text = tab_text.split("(")[0];
-        tab_text = tab_text + " " + "( " + selected_fields + "/" + visible_fields + " )";
-        document.getElementById(tab_button_name).textContent = tab_text;
-    } else {
-        tab_text = tab_text + " " + "( " + selected_fields + "/" + visible_fields + " )";
-        document.getElementById(tab_button_name).textContent = tab_text;
-    }
-
-
-}
-
-// query fields from database
-// function query_database_for_dependent_fields(selected_checkboxes) {
-//     let fd = new FormData();
-//     for (let [key, value] of selected_checkboxes) {
-//         fd.append(key, value);
-//     }
-//     fd.append('csrfmiddlewaretoken', csrf_token);
-//     $.ajax({
-//         url: '/settings/data_access_rights/fetch_fields',
-//         method: 'POST',
-//         data: fd,
-//         dataType: 'json',
-//         contentType: false,
-//         processData: false,
-//         success: function (data) {
-//             if (data) {
-//                 render_filtered_fields(data);
-//             } else {
-//                 alert("ajax call not success.");
-//             }
-//         },
-//         fail: function () {
-//             alert('request failed');
-//         }
-//     });
-// }
-
-// mandatory to do one selection from each field
-function enable_disable_save_button(class_name_to_id_map) {
-    let save_button = document.getElementById("access-save")
-    if (class_name_to_id_map.size < 11) {
-        save_button.disabled = true;
-    } else {
-        save_button.disabled = false;
-    }
-}
-
-function start_loading() {
-    document.getElementById('checkboxes').style.display = 'none'
-    document.getElementById('loader').style.display = 'block'
-    document.getElementsByClassName('group-map-btn-div')[0].style.display = 'none'
-}
-
-function stop_loading() {
-    c
-    document.getElementById('checkboxes').style.display = 'block'
-    document.getElementById('loader').style.display = 'none'
-    document.getElementsByClassName('group-map-btn-div')[0].style.display = 'block'
 }
 
 // fetch fields

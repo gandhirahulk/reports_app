@@ -19,6 +19,7 @@
                     <div class="reponse-inner-header"><label for="">Dimensions : </label></div>
                     <div class="response-inner-content" id="checkboxes">
                         {% for dimension in dimensions %}
+
                             <div class="multiselect">
                                 <div class="selectBox"
                                      onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
@@ -28,6 +29,7 @@
                                     </select>
                                     <div class="overSelect"></div>
                                 </div>
+
                                 <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown"
                                      style="display: none;">
                                     {% define dimension.fk_table.db_table_name|get_sub_field as query_set %}
@@ -46,6 +48,7 @@
                     </div>
 
                 </div>
+
                 <div class="response-container" style="width: 37%;">
                     <div class="reponse-inner-header"><label for="">Report Type : </label></div>
                     <div class="response-inner-content">
@@ -62,6 +65,7 @@
 
                     </div>
                 </div>
+
                 <div class="response-container" style="width: 37%;">
                     <div class="reponse-inner-header"><label for="">Frequency : </label></div>
                     <div class="response-inner-content">
@@ -85,6 +89,7 @@
         </fieldset>
 
     </div>
+
     <input type="checkbox" id="partial_select_await" hidden>
 
 
@@ -151,9 +156,7 @@
         $(".chosen-choices").each(function (i, v) {
             v.style.width = '300px'
         });
-    </script>
 
-    <script>
         $('#main_table').dataTable({
             scrollX: "true",
         });
@@ -170,10 +173,6 @@
             e.preventDefault();
         });
 
-    </script>
-
-
-    <script>
         var expanded = false;
 
         function showCheckboxes(element_id) {
@@ -193,9 +192,7 @@
             }
         }
 
-    </script>
 
-    <script>
         $(document).ready(function () {
             $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
             $(document).keyup(function (e) {
@@ -310,9 +307,7 @@
                 this.val(arr);
             },
         });
-    </script>
 
-    <script>
         $(document).ready(function () {
             let elements = document.getElementsByClassName("MultiCheckBoxDetail")
             $.each(elements, function (i, v) {
