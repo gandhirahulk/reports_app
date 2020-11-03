@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load define %}
+{%  load replace %}
 {% load get_sub_field %}
 {% load get_dict_value %}
 {% block titleblock %} | Reports {% endblock %}
@@ -36,9 +37,9 @@
                                     {% for name,fk in query_set.query_set.items %}
                                         <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
                                                style="display: block; ">
-                                            <input type="checkbox" class="{{ dimension.name }}"
+                                            <input type="checkbox" class="{{ dimension.name|replace }}"
                                                    name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
-                                                   id="{{ dimension.name }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                                   id="{{ dimension.name|replace }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
                                                    onclick="fetch_dependent_field(this.id)"/> {{ name }}</label>
                                     {% endfor %}
                                 </div>

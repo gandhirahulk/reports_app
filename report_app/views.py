@@ -25,10 +25,13 @@ def payroll(request):
         message = 'lol'
         # return render(request, DASHBOARD_HTML, {'employees': getattr(models, EMPLOYEES).objects.filter(status=ACTIVE)})
         # return JsonResponse(data, safe=False)
+
+        field_list = [EMPLOYEES]
+        active_fields = fetch_active_fields2(field_list)
         return HttpResponse(json.dumps({'message': message}))
 
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
-                  DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES]
+                  DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES, ENTITIES]
     active_fields = fetch_active_fields2(field_list)
     return render(request, REPORTS_HTML, active_fields)
 

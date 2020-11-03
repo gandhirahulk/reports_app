@@ -5,7 +5,7 @@ from . import models
 def fetch_active_fields2(field_list):
     active_fields = {}
 
-    no_status_fields = [STATUS, THEMES, SKILL_TYPE, MODULES, STATE_LIST]
+    no_status_fields = [STATUS, STATE_LIST]
 
     for field in field_list:
         if field != 'display_names':

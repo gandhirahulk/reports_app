@@ -167,6 +167,19 @@ class tenure(models.Model):
     def __str__(self):
         return self.name
 
+class entity(models.Model):
+    pk_entity = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    created_by = models.CharField(max_length=100,null=True)
+    created_date_time = models.DateTimeField(auto_now_add=True,null=True)
+    modified_by = models.CharField(max_length=100, null=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True,default=2)
+
+    def __str__(self):
+        return self.name
+
 
 class employment_type(models.Model):
     pk_type = models.AutoField(primary_key=True)
@@ -272,6 +285,7 @@ class employee(models.Model):
     doj = models.DateField()
     lwd = models.DateField()
     designation = models.ForeignKey(designation, on_delete=models.CASCADE, null=True)
+
     # fk
     department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
     function_category = models.ForeignKey(function_category, on_delete=models.CASCADE, null=True)

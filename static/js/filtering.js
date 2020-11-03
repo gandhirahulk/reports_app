@@ -124,10 +124,10 @@ function fetch_dependent_field(current_id) {
 
 
 let parent_to_child_map = new Map();
-parent_to_child_map.set('Department', ['Function/Category'])
-parent_to_child_map.set('Function/Category', ['Team'])
-parent_to_child_map.set('Team', ['Sub Team'])
-parent_to_child_map.set('Sub Team', ['State'])
+parent_to_child_map.set('Department', ['Function_Category'])
+parent_to_child_map.set('Function_Category', ['Team'])
+parent_to_child_map.set('Team', ['Sub_Team'])
+parent_to_child_map.set('Sub_Team', ['State'])
 parent_to_child_map.set('State', ['City'])
 parent_to_child_map.set('City', ['Location'])
 parent_to_child_map.set('Location', ['Vendor'])
@@ -138,10 +138,10 @@ let child_to_parent_map = new Map();
 child_to_parent_map.set('Vendor', 'Location')
 child_to_parent_map.set('Location', 'City')
 child_to_parent_map.set('City', 'State')
-child_to_parent_map.set('State', 'Sub Team')
-child_to_parent_map.set('Sub Team', 'Team')
-child_to_parent_map.set('Team', 'Function/Category')
-child_to_parent_map.set('Function/Category', 'Department')
+child_to_parent_map.set('State', 'Sub_Team')
+child_to_parent_map.set('Sub_Team', 'Team')
+child_to_parent_map.set('Team', 'Function_Category')
+child_to_parent_map.set('Function_Category', 'Department')
 child_to_parent_map.set('Department', 'none')
 
 
@@ -190,7 +190,7 @@ function fill_dependent_field_map(field_name, dependent_ids, dependent_fields_ma
 
 
 function filter_records(class_name_to_id_map) {
-    let field_names = ['Department', 'Function/Category', 'Team', 'Sub Team', 'State', 'City', 'Location', 'Vendor']
+    let field_names = ['Department', 'Function_Category', 'Team', 'Sub_Team', 'State', 'City', 'Location', 'Vendor']
     let dependent_fields_map = {}
     let selected_field_array = []
     for (let [key, value] of class_name_to_id_map) {
