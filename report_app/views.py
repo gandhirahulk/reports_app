@@ -19,7 +19,7 @@ from django.core.files.base import ContentFile
 
 
 @login_required(login_url=NOT_LOGIN)
-def payroll(request):
+def reports(request):
     if request.method == POST_METHOD:
         print(request.POST)
         message = 'lol'
@@ -33,7 +33,7 @@ def payroll(request):
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
                   DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES, ENTITIES]
     active_fields = fetch_active_fields2(field_list)
-    return render(request, REPORTS_HTML, active_fields)
+    return render(request, REPORT_HTML, active_fields)
 
 
 def csp_login(request):
@@ -51,7 +51,7 @@ def csp_login(request):
             if user is not None and user.is_active:
                 login(request, user)
                 messages.success(request, "Login Successfull")
-                return redirect('report_app:payroll')
+                return redirect('report_app:reports')
 
             else:
                 messages.add_message(request, messages.ERROR, "Invalid Credentials")

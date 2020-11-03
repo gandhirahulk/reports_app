@@ -5,7 +5,6 @@ from report_app.models import status
 ACTIVE = status.objects.get(status_name='active')
 IN_ACTIVE = status.objects.get(status_name='inactive')
 
-
 # DISPLAY NAMES
 STATUS = 'status'
 EMPLOYEES = 'employees'
@@ -23,10 +22,10 @@ FUNCTIONS = 'functions'
 VENDORS = 'vendors'
 GENDERS = 'genders'
 REPORT_TYPES = 'report_types'
-FREQUENCIES='frequencies'
-DIMENSIONS='dimensions'
-CITIES='cities'
-SUB_TEAMS='sub_teams'
+FREQUENCIES = 'frequencies'
+DIMENSIONS = 'dimensions'
+CITIES = 'cities'
+SUB_TEAMS = 'sub_teams'
 POST_METHOD = "POST"
 
 STATES = 'states'
@@ -35,5 +34,5 @@ NOT_LOGIN = '/notlogin/'
 TEMPLATE_VARIABLE_TABLE = 'template_variables'
 
 # HTML TEMPLATES
-REPORTS_HTML = 'table.html'
-
+TABLE_HTML = 'table.html'
+REPORT_HTML = 'reports.html'

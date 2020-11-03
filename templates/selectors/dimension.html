@@ -1,0 +1,37 @@
+{% load define %}
+{%  load replace %}
+{% load get_sub_field %}
+{% load get_dict_value %}
+<div class="response-container">
+    <div class="reponse-inner-header"><label for="">Dimensions : </label></div>
+    <div class="response-inner-content" id="checkboxes">
+        {% for dimension in dimensions %}
+
+            <div class="multiselect">
+                <div class="selectBox"
+                     onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
+                    <select name="dimensions" class="dimensions"
+                            id="dimensions--{{ forloop.counter }}" style="font-size: inherit">
+                        <option>{{ dimension.name }}</option>
+                    </select>
+                    <div class="overSelect"></div>
+                </div>
+
+                <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown"
+                     style="display: none;">
+                    {% define dimension.fk_table.db_table_name|get_sub_field as query_set %}
+                    {% for name,fk in query_set.query_set.items %}
+                        <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
+                               style="display: block; ">
+                            <input type="checkbox" class="{{ dimension.name|replace }}"
+                                   name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
+                                   id="{{ dimension.name|replace }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                   onclick="fetch_dependent_field(this.id)"/> {{ name }}</label>
+                    {% endfor %}
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+</div>

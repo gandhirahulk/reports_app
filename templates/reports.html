@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titleblock %} | Reports {% endblock %}
+
+{% block tabcontentblock %}
+
+
+
+    <div class="tab_container" style="padding:15px;overflow: auto;" id="tab_content">
+        <fieldset style="    padding: 20px;
+        border-color: aliceblue;" id="response_header">
+            <legend style="color: #bf0711;font-weight: bold;">RESPONSE HEADERS</legend>
+            <form id="reports_form" method="post">
+                {% csrf_token %}
+                {% include 'selectors/dimension.html' %}
+                {% include 'selectors/report_type.html' %}
+                {% include 'selectors/frequency.html' %}
+
+            </form>
+
+
+            <button type="submit" class="basic-save-btn" id="render_table" name="go_button" form="reports_form">GO</button>
+
+
+        </fieldset>
+
+    </div>
+
+    <input type="checkbox" id="partial_select_await" hidden>
+
+
+    <div class="table-div">
+
+    </div>
+
+    <script>
+
+    </script>
+    <script src="{% static 'js/reports.js' %}"></script>
+{% endblock %}
