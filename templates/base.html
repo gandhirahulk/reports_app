@@ -16,6 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/alertmsgcss.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/media.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
@@ -32,6 +35,8 @@
     <style>
         .multiselect {
             width: 200px;
+            margin-right: 20px;
+            /* margin-bottom: 5px; */
         }
 
         .selectBox {
@@ -40,7 +45,7 @@
 
         .selectBox select {
             width: 100%;
-            font-weight: bold;
+            font-weight: 400;
         }
 
         .overSelect {
@@ -52,7 +57,7 @@
         }
 
     </style>
-    {#    <style>#}
+    <!-- {#    <style>#}
     {#        .MultiCheckBox {#}
     {#            border: 1px solid #e2e2e2;#}
     {#            padding: 5px;#}
@@ -118,7 +123,7 @@
     {#            left: 24px;#}
     {#            color: #fff;#}
     {#        }#}
-    {#    </style>#}
+    {#    </style>#} -->
 
 
 </head>
@@ -126,14 +131,15 @@
 <div class="wrapper collapse">
     <div class="top_navbar">
         <div class="top_menu">
-            <div class="logo" style="padding: 5px; width:0px">
+            <div class="logo" style="padding-left: 2%; width:0px">
 
-                <a href=""><img src="{% static 'images/udaanredlogo.png' %}" alt="Company Logo" style="width: 55px;"
+                <a href=""><img src="{% static 'images/udaanredlogo.png' %}" alt="Company Logo" style="width: 50px;"
                                 title="Refresh"></a></div>
 
             <div class="user-div">
                 <ul>
-                    <label>LOGOUT</label>
+                    <li><a href="{% url 'report_app:password_change' %}" title="Change Password for {{ request.user }}"><i class="fas fa-user-lock"></i></a></li>
+                
                     <li title="Logout"><a href="{% url 'report_app:csp_logout' %}"><i
                             class="fas fa-sign-out-alt"></i></a></li>
                 </ul>
@@ -144,11 +150,7 @@
 
     <div class="main_container" style="margin-left: 0px;width:calc(100% - 20px);">
 
-        {#        <div class="item item_header">#}
-        {#            {% block bodyblock %}#}
-        {##}
-        {#            {% endblock %}#}
-        {#        </div>#}
+  
         <div class="item item_contents">
 
             {% block tabcontentblock %}

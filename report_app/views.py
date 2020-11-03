@@ -63,3 +63,17 @@ def csp_logout(request):
 
 def notlogin(request):
     return render(request, 'timeout.html')
+
+@login_required(login_url='/notlogin/')
+def change_password(request):
+    
+    selected_user = User.objects.get(email=request.user.email)
+    if request.method == 'POST':
+        
+        pwd = request.POST.get('new_password2')
+        selected_user.password = pwd
+        selected_user.set_password(selected_user.password)
+        selected_user.save()
+        return render(request, 'registration/password_reset_complete.html')
+    return render(request, 'registration/password_change.html')
+    

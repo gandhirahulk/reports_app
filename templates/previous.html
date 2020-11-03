@@ -1,0 +1,241 @@
+<div style="padding-top: 60px;padding-bottom:10px;display: flex;justify-content: space-between;">
+    <label>RESPONSE HEADERS</label>
+    <br>
+</div>
+
+<form id="payroll_form" method="post">
+    {% csrf_token %}
+    <div>
+        <style>
+            .data_table td {
+                padding: 5px;
+                margin: 5px;
+                font-size: initial;
+                width: -moz-available;
+            }
+
+            .data_table text {
+                padding: 5px;
+                margin: 5px;
+                font-size: initial;
+            }
+
+            .sub_table {
+                font-size: initial;
+                width: 200px;
+            }
+        </style>
+        <table class="data_table" style="overflow-x: auto; white-space: nowrap;" onmouseover="this.style.display='block'"
+        onmouseout="this.style.display='' ">
+            <thead>
+            <tr>
+                <td>Dimensions :</td>
+                {% for dimension in dimensions %}
+                    <td>
+                        <div class="multiselect">
+                            <div class="selectBox"
+                                 onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
+                                <select name="dimensions" class="dimensions"
+                                        id="dimensions--{{ forloop.counter }}" style="font-size: initial">
+                                    <option>{{ dimension.name }}</option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="div--{{ dimension.name }}--{{ forloop.counter }}" style="display: none;
+    border: 1px #dadada solid;">
+                                {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}
+                                    {% define var1|add:'--'|add:var2|get_sub_field as query_set %}
+                                    {% for name,fk in query_set.query_set.items %}
+                                        <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
+                                               style="display: block; ">
+                                            <input type="checkbox" class="{{ dimension.name }}"
+                                                   name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
+                                                   id="{{ dimension.name }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                                   onclick="fetch_dependent_field(this.id)"/>{{ name }}
+                                        </label>
+                                    {% endfor %}
+                                {% endwith %}
+                            </div>
+                        </div>
+<!-- 
+
+                        {#                                <select name="dimensions" class="dimensions" id="dimensions--{{ forloop.counter }}"#}
+                        {#                                        style="width: auto" multiple>#}
+                        {#                                    {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}#}
+                        {#                                        {% define var1|add:'--'|add:var2|get_sub_field as query_set %}#}
+                        {#                                        {% for name in query_set %}#}
+                        {#                                            <option value="{{ name }}"#}
+                        {#                                                    id="period--{{ forloop.counter }}--{{ forloop.parentloop.counter }}">#}
+                        {#                                                {{ name }}#}
+                        {#                                            </option>#}
+                        {#                                        {% endfor %}#}
+                        {#                                    {% endwith %}#}
+                        {#                                </select>#}
+                        {#                                <script>#}
+                        {#                                    $(document).ready(function () {#}
+                        {#                                        $("#dimensions--{{ forloop.counter }}").CreateMultiCheckBox({#}
+                        {#                                            width: '230px',#}
+                        {#                                            defaultText: '{{dimension.name}}',#}
+                        {#                                            height: '250px'#}
+                        {#                                        });#}
+                        {#                                    });#}
+                        {#                                </script>#} -->
+                    </td>
+                {% endfor %}
+
+            </tr>
+            {#multiple class="chosen-select"#}
+            <tr>
+                <td>Report Type :</td>
+                <td><select data-placeholder="Begin typing a name to filter..."
+                            class='sub_table' name="report type" id="type_code">
+                    {% for report in report_types %}
+                        <option value="{{ report.name }}" style="outline: none !important;">
+                            {{ report.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Frequency :</td>
+                <td>
+                    <select name="frequency" id="freq_code" class='sub_table'>
+                        {% for frequency in frequencies %}
+                            <option value="{{ frequency.name }}"
+                                    style="outline: none !important;">{{ frequency.name }}</option>
+                        {% endfor %}
+                    </select></td>
+            </tr>
+            </thead>
+            <tbody id="input_data">
+            </tbody>
+        </table>
+    </div>
+
+    <br><br>
+
+    <button type="submit" class="basic-save-btn" id="render_table" name="go_button"
+            style="width: 100px;padding: 5px;margin: 5px;float: right">GO
+    </button>
+    <br>
+    <br>
+
+    <tr>
+        <td>Dimensions :</td>
+        {% for dimension in dimensions %}
+            <td>
+                <div class="multiselect">
+                    <div class="selectBox"
+                         onclick="showCheckboxes('div--{{ dimension.name }}--{{ forloop.counter }}')">
+                        <select name="dimensions" class="dimensions"
+                                id="dimensions--{{ forloop.counter }}" style="font-size: initial">
+                            <option>{{ dimension.name }}</option>
+                        </select>
+                        <div class="overSelect"></div>
+                    </div>
+                    <div id="div--{{ dimension.name }}--{{ forloop.counter }}" style="display: none;
+border: 1px #dadada solid;">
+                        {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}
+                            {% define var1|add:'--'|add:var2|get_sub_field as query_set %}
+                            {% for name,fk in query_set.query_set.items %}
+                                <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
+                                       style="display: block; ">
+                                    <input type="checkbox" class="{{ dimension.name }}"
+                                           name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
+                                           id="{{ dimension.name }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                           onclick="fetch_dependent_field(this.id)"/>{{ name }}
+                                </label>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </div>
+<!-- 
+
+                {#                                <select name="dimensions" class="dimensions" id="dimensions--{{ forloop.counter }}"#}
+                {#                                        style="width: auto" multiple>#}
+                {#                                    {% with var1=dimension.fk_table.db_table_name var2=dimension.fk_table.sort_column %}#}
+                {#                                        {% define var1|add:'--'|add:var2|get_sub_field as query_set %}#}
+                {#                                        {% for name in query_set %}#}
+                {#                                            <option value="{{ name }}"#}
+                {#                                                    id="period--{{ forloop.counter }}--{{ forloop.parentloop.counter }}">#}
+                {#                                                {{ name }}#}
+                {#                                            </option>#}
+                {#                                        {% endfor %}#}
+                {#                                    {% endwith %}#}
+                {#                                </select>#}
+                {#                                <script>#}
+                {#                                    $(document).ready(function () {#}
+                {#                                        $("#dimensions--{{ forloop.counter }}").CreateMultiCheckBox({#}
+                {#                                            width: '230px',#}
+                {#                                            defaultText: '{{dimension.name}}',#}
+                {#                                            height: '250px'#}
+                {#                                        });#}
+                {#                                    });#}
+                {#                                </script>#} -->
+            </td>
+        {% endfor %}
+
+    </tr>
+
+
+    <form id="payroll_form" method="post">
+        {% csrf_token %}
+        <div>
+            <style>
+                .data_table td {
+                    padding: 5px;
+                    margin: 5px;
+                    font-size: initial;
+                    width: -moz-available;
+                }
+
+                .data_table text {
+                    padding: 5px;
+                    margin: 5px;
+                    font-size: initial;
+                }
+
+                .sub_table {
+                    font-size: initial;
+                    width: 200px;
+                }
+            </style>
+            <table class="data_table" style="overflow-x: auto; white-space: nowrap;" onmouseover="this.style.display='block'"
+            onmouseout="this.style.display='' ">
+                <thead>
+                
+                {#multiple class="chosen-select"#}
+                <tr>
+                    <td>Report Type :</td>
+                    <td><select data-placeholder="Begin typing a name to filter..."
+                                class='sub_table' name="report type" id="type_code">
+                        {% for report in report_types %}
+                            <option value="{{ report.name }}" style="outline: none !important;">
+                                {{ report.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td>Frequency :</td>
+                    <td>
+                        <select name="frequency" id="freq_code" class='sub_table'>
+                            {% for frequency in frequencies %}
+                                <option value="{{ frequency.name }}"
+                                        style="outline: none !important;">{{ frequency.name }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+                </thead>
+                <tbody id="input_data">
+                </tbody>
+            </table>
+        </div>
+
+        <br><br>
+    </form>
+
+</form>

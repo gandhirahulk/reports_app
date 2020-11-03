@@ -80,6 +80,7 @@ body{
 
 .wrapper .top_navbar .top_menu .user-div{
   width: 30%;
+  padding-right: 2%;
 }
 
 .wrapper .top_navbar .top_menu ul{
@@ -213,7 +214,6 @@ body{
   height: calc(100% - 60px);
   position: fixed;
   width: inherit;
-  top: 120px;
   overflow-y: auto;
 }
 

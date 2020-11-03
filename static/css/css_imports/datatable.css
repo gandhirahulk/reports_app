@@ -14,6 +14,10 @@ table.dataTable {
    * Body styles
    */
 }
+
+.dataTables_scrollBody{
+  overflow: hidden !important;
+}
 table.dataTable thead th,
 table.dataTable tfoot th {
   font-weight: bold;
