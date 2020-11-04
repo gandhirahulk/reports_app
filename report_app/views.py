@@ -56,7 +56,7 @@ def csp_login(request):
             else:
                 messages.add_message(request, messages.ERROR, "Invalid Credentials")
                 return redirect('report_app:login')
-    return render(request, 'Login.html')
+    return render(request, 'login.html')
 
 
 @login_required(login_url='/notlogin/')
