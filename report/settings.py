@@ -25,7 +25,8 @@ SECRET_KEY = '46_gw!=oz$!y%pvx%cx$k&7h0i60!4gdo$@j4iotc!4rqneh7j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.25.26.121','127.0.0.1']
+
 
 
 # Application definition
@@ -78,10 +79,10 @@ WSGI_APPLICATION = 'report.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'reports',
+        'NAME': 'report',
         'USER': 'postgres',
-        'PASSWORD': 'associate',
-        'HOST': 'localhost',
+        'PASSWORD': 'root',
+        'HOST': '172.25.26.121',
         'PORT': 5432,
     }
 }
