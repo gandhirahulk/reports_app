@@ -18,14 +18,17 @@ $("#main_table").mouseout(function () {
     $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
 });
 
-$("#payroll_form").on("submit", function (e) {
-    $.post('/reports/', $(this).serialize(), function (data) {
-        $('.message').html(data.message);
-    });
-    e.preventDefault();
+$(".dataTables_scroll").hover(function () {
+    $('.dataTables_scrollBody').attr('style', 'overflow: scroll !important');
+});
+$(".dataTables_scroll").mouseout(function () {
+    $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
 });
 
+
+
 var expanded = false;
+
 
 function showCheckboxes(element_id) {
     var all = document.getElementsByClassName("checklist-dropdown");

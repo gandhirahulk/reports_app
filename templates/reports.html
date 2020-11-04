@@ -20,7 +20,8 @@
             </form>
 
 
-            <button type="submit" class="basic-save-btn" id="render_table" name="go_button" form="reports_form">GO</button>
+            <button type="submit" class="basic-save-btn" id="render_table" name="go_button" form="reports_form">GO
+            </button>
 
 
         </fieldset>
@@ -29,13 +30,56 @@
 
     <input type="checkbox" id="partial_select_await" hidden>
 
-
     <div class="table-div">
-
+    {% include 'table.html' %}
     </div>
 
     <script>
-
+        var csrf_token = '{{ csrf_token }}'
+        $("#reports_form").on("submit", function (e) {
+            let class_name_map = new Map();
+            let selected_field = [];
+            let fd = new FormData();
+            $('#checkboxes input:checked').each(function () {
+                if ($(this).attr('id').includes('--')) {
+                    let checkbox_name = $(this).attr('id').split('--')[3];
+                    let local_class_name = $(this).attr('class');
+                    if (local_class_name != null) {
+                        if (!class_name_map[local_class_name]) {
+                            class_name_map[local_class_name] = [checkbox_name];
+                        } else {
+                            selected_field = class_name_map[local_class_name];
+                            if (!selected_field.includes(checkbox_name)) {
+                                selected_field.push(checkbox_name);
+                            }
+                        }
+                    }
+                }
+            });
+            fd.append('csrfmiddlewaretoken', csrf_token)
+            fd.append('report type', document.getElementById('type_code').value)
+            fd.append('frequency', document.getElementById('freq_code').value)
+            fd.append('dimensions', JSON.stringify(class_name_map))
+            $.ajax({
+                url: '/reports/',
+                method: 'POST',
+                data: fd,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data) {
+                        $('.message').html(data.message);
+                    } else {
+                        alert("ajax call not success.");
+                    }
+                },
+                fail: function () {
+                    alert('request failed');
+                }
+            });
+            e.preventDefault();
+        });
     </script>
     <script src="{% static 'js/reports.js' %}"></script>
 {% endblock %}

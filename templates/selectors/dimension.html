@@ -1,5 +1,5 @@
 {% load define %}
-{%  load replace %}
+{% load replace %}
 {% load get_sub_field %}
 {% load get_dict_value %}
 <div class="response-container">
@@ -14,7 +14,7 @@
                             id="dimensions--{{ forloop.counter }}" style="font-size: inherit">
                         <option>{{ dimension.name }}</option>
                     </select>
-                    <div class="overSelect"></div>
+                    <div class="overSelect" onclick="hide_show('div--{{ dimension.name }}--{{ forloop.counter }}')"></div>
                 </div>
 
                 <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown"
@@ -25,7 +25,7 @@
                                style="display: block; ">
                             <input type="checkbox" class="{{ dimension.name|replace }}"
                                    name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
-                                   id="{{ dimension.name|replace }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}"
+                                   id="{{ dimension.name|replace }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}--{{ name|replace }}"
                                    onclick="fetch_dependent_field(this.id)"/> {{ name }}</label>
                     {% endfor %}
                 </div>
@@ -33,5 +33,4 @@
 
         {% endfor %}
     </div>
-
 </div>
