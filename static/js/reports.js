@@ -1,3 +1,10 @@
+$(document).keyup(function () {
+    if (event.keyCode === 27) {
+        $('.checklist-dropdown').css('display', 'none')
+    }
+});
+
+
 $(".chosen-select").chosen({
     no_results_text: "Oops, nothing found!"
 })
@@ -24,7 +31,6 @@ $(".dataTables_scroll").hover(function () {
 $(".dataTables_scroll").mouseout(function () {
     $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
 });
-
 
 
 var expanded = false;
