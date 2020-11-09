@@ -13,8 +13,8 @@ from ..constants import STATUS, ACTIVE
 @register.filter
 def get_sub_field(table):
     query = getattr(report_app.models, table).objects.filter(**{STATUS: ACTIVE})
-    query_set = {}
-    pk_set = {}
+    id_to_fk_map = {}
+    id_to_name_map = {}
     fk = ''
 
     for field in getattr(report_app.models, table).objects.filter(**{STATUS: ACTIVE}).first()._meta.concrete_fields:
@@ -24,13 +24,13 @@ def get_sub_field(table):
 
     if fk != '':
         for field in query:
-            pk_set[getattr(field, 'name')] = field.pk
-            query_set[getattr(field, 'name')] = getattr(field, str(fk + '_id'))
+            id_to_name_map[field.pk] = getattr(field, 'name')
+            id_to_fk_map[field.pk] = getattr(field, str(fk + '_id'))
 
     if fk =='':
         for field in query:
-            pk_set[getattr(field, 'name')] = field.pk
-            query_set[getattr(field, 'name')] = field.pk
+            id_to_name_map[field.pk] = getattr(field, 'name')
+            id_to_fk_map[field.pk] = getattr(field, 'name')
 
-    query_dict = {'query_set': query_set, 'pk_set': pk_set}
+    query_dict = {'id_to_fk': id_to_fk_map, 'id_to_name': id_to_name_map}
     return query_dict

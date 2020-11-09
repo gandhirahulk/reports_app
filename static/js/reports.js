@@ -260,9 +260,9 @@ function fetch_dependent_field(current_id) {
     console.log(current_id)
     let class_name_to_id_map = new Map();
     let condition = $("#" + current_id).prop('checked');
-    let current_class_name = $('#' + current_id).attr('class');
+    // let current_class_name = $('#' + current_id).attr('class');
     let selected_checkboxes = [];
-
+    let current_class_name = current_id.split('--')[0]
     if (current_class_name != null) {
         $('#checkboxes input:checked').each(function () {
             if ($(this).attr('id').includes('--')) {

@@ -20,13 +20,12 @@
                 <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown"
                      style="display: none;overflow-y: scroll;height: 30%;">
                     {% define dimension.fk_table.db_table_name|get_sub_field as query_set %}
-                    {% for name,fk in query_set.query_set.items %}
-                        <label for="{{ name }}--{{ forloop.counter }}--{{ forloop.parentloop.counter }}"
-                               style="display: block; ">
+                    {% for pk,fk in query_set.id_to_fk.items %}
+                        <label style="display: block; ">
                             <input type="checkbox" class="{{ dimension.name|replace }}"
-                                   name="{{ name }}--{{ query_set.pk_set|get_dict_value:name }}--{{ dimension.name }}"
-                                   id="{{ dimension.name|replace }}--{{ fk }}--{{ query_set.pk_set|get_dict_value:name }}--{{ name|replace }}"
-                                   onclick="fetch_dependent_field(this.id)"/> {{ name }}</label>
+                                   name="{{ query_set.id_to_name|get_dict_value:pk }}--{{ pk }}--{{ dimension.name }}"
+                                   id="{{ dimension.name|replace }}--{{ fk }}--{{ pk }}--{{ query_set.id_to_name|get_dict_value:pk }}"
+                                   onclick="fetch_dependent_field(this.id)"/> {{ query_set.id_to_name|get_dict_value:pk }}</label>
                     {% endfor %}
                 </div>
             </div>
