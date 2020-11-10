@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'report.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'report_new',
+        'NAME': 'report',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': '192.168.0.107',
