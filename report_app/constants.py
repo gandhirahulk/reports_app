@@ -1,5 +1,5 @@
-# from .models import status
-from report_app.models import status
+from .models import status
+# from report_app.models import status
 
 # STATUS
 ACTIVE = status.objects.get(status_name='active')
