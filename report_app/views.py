@@ -138,32 +138,22 @@ def filtered_dataframe(report_type, date_value_list, emp_master, filter_dict):
 @login_required(login_url=NOT_LOGIN)
 def reports(request):
     if request.method == POST_METHOD:
-        # print(request.POST)
-        # query_dict_str = str(request.POST)
-        # query_dict_str = query_dict_str.replace('<QueryDict:', '').replace('>', '')
-        # query_dict_str = query_dict_str.replace('\\n', '')
-        # print(query_dict_str)
-        # filter_dict = eval(query_dict_str)
-        # EmployeeMaster = read_main_file()
-        # frequency = return_frequency(filter_dict)
-        # print(frequency)
-        # date_value_list = return_date_list(frequency)
-        # report_type = return_report_type(filter_dict)
-        # test = filtered_dataframe(report_type, date_value_list, EmployeeMaster, filter_dict)
-        # final_dataframe = return_final_table(EmployeeMaster, date_value_list, test)
+        print(request.POST)
+        query_dict_str = str(request.POST)
+        query_dict_str = query_dict_str.replace('<QueryDict:', '').replace('>', '')
+        query_dict_str = query_dict_str.replace('\\n', '')
+        print(query_dict_str)
+        filter_dict = eval(query_dict_str)
+        EmployeeMaster = read_main_file()
+        frequency = return_frequency(filter_dict)
+        print(frequency)
+        date_value_list = return_date_list(frequency)
+        report_type = return_report_type(filter_dict)
+        test = filtered_dataframe(report_type, date_value_list, EmployeeMaster, filter_dict)
+        final_dataframe = return_final_table(EmployeeMaster, date_value_list, test)
 
-        # Define a dictionary containing employee data
-        data = {'Name': ['Jai', 'Princi', 'Gaurav', 'Anuj'],
-                'Age': [27, 24, 22, 32],
-                'Address': ['Delhi', 'Kanpur', 'Allahabad', 'Kannauj'],
-                'Qualification': ['Msc', 'MA', 'MCA', 'Phd']}
+        return render(request, TABLE_HTML, {'data_frame': final_dataframe[:5]})
 
-        # Convert the dictionary into DataFrame
-        df = pd.DataFrame(data)
-
-        # return HttpResponse(final_dataframe[:5].to_html())
-        return render(request, TABLE_HTML, {'data_frame': df})
-        # return HttpResponse('lol')
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
                   DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES, ENTITIES]
     active_fields = fetch_active_fields2(field_list)
