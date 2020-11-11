@@ -1,16 +1,41 @@
-<a href="" class="export-btn">Export <i class="fas fa-file-export"></i></a>
+{% load static %}
+<div class="table-div">
+    <a href="" class="export-btn">Export <i class="fas fa-file-export"></i></a>
 
-<table class="data_table" id="main_table" style="overflow-x: auto;white-space: nowrap;display: block" >
 
-    <thead>
-    <tr>
-        {% include 'utilities/table/headers.html' %}
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
+    <table class="data_table" id="main_table"
+           style="margin-left:auto;margin-right: auto; overflow-x: auto;white-space: nowrap; width: 100%">
+        <thead>
+        <tr>
+            {% include 'utilities/table/headers.html' %}
+        </tr>
+        </thead>
+        <tbody>
         {% include 'utilities/table/data.html' %}
-    </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#main_table').dataTable({
+        scrollX: "true",
+    });
+    $("#main_table").hover(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: auto !important');
+    });
+    $("#main_table").mouseout(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
+    });
+
+    $(".dataTables_scroll").hover(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: auto !important');
+    });
+    $(".dataTables_scroll").mouseout(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
+    });
+
+    $(document).on('ready', function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
+
+    })
+</script>

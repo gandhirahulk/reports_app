@@ -1,18 +1,3 @@
-<th>UID</th>
-<th>Employee Name</th>
-<th>Entity</th>
-<th>Vendor</th>
-<th>Department</th>
-<th>Function</th>
-<th>Team</th>
-<th>Sub Team</th>
-<th>Region</th>
-<th>State</th>
-<th>Location</th>
-<th>Employee Type</th>
-<th>Gender</th>
-<th>CTC Slabs</th>
-<th>Employment Tenure</th>
-<th>Reason For Exit</th>
-<th>Exit Type</th>
-<th>Age</th>
+{% for header in data_frame %}
+    <th style="background-color: #bf0711;color: #f5f5fa">{{ header }}</th>
+{% endfor %}

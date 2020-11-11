@@ -30,9 +30,7 @@
 
     <input type="checkbox" id="partial_select_await" hidden>
 
-    <div class="table-div">
-    {% include 'table.html' %}
-    </div>
+    <div id="table_div" ></div>
 
     <script>
         var csrf_token = '{{ csrf_token }}'
@@ -56,6 +54,7 @@
                     }
                 }
             });
+            let modalDiv = $("#table_div");
             fd.append('csrfmiddlewaretoken', csrf_token)
             fd.append('report type', document.getElementById('type_code').value)
             fd.append('frequency', document.getElementById('freq_code').value)
@@ -64,12 +63,12 @@
                 url: '/reports/',
                 method: 'POST',
                 data: fd,
-                dataType: 'json',
+                dataType: 'text',
                 contentType: false,
                 processData: false,
                 success: function (data) {
                     if (data) {
-                        $('.message').html(data.message);
+                        modalDiv.html(data);
                     } else {
                         alert("ajax call not success.");
                     }
@@ -78,7 +77,7 @@
                     alert('request failed');
                 }
             });
-            {#e.preventDefault();#}
+            e.preventDefault();
         });
     </script>
     <script src="{% static 'js/reports.js' %}"></script>

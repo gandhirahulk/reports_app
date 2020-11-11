@@ -29,7 +29,8 @@ from django.core.files.base import ContentFile
 def read_main_file():
     scope = ['https://spreadsheets.google.com/feeds']
     gc = pygsheets.authorize(service_file='C:/Users/patel.vaishakhi/Downloads/fourth-stock-291709-1cadc070c80b.json')
-    emp_master = gc.open_by_url('https://docs.google.com/spreadsheets/d/1soEWcz-KwUAUR_8ua3xTHDHr0dfR5QEce4-gI0lnPyI/edit#gid=0')
+    emp_master = gc.open_by_url(
+        'https://docs.google.com/spreadsheets/d/1soEWcz-KwUAUR_8ua3xTHDHr0dfR5QEce4-gI0lnPyI/edit#gid=0')
     wks3 = emp_master.worksheet_by_title("EmployeeMaster")
     EmployeeMaster = wks3.get_as_df()
     for index, row in EmployeeMaster.iterrows():
@@ -137,23 +138,32 @@ def filtered_dataframe(report_type, date_value_list, emp_master, filter_dict):
 @login_required(login_url=NOT_LOGIN)
 def reports(request):
     if request.method == POST_METHOD:
-        print(request.POST)
-        message = 'lol'
-        query_dict_str = str(request.POST)
-        query_dict_str = query_dict_str.replace('<QueryDict:', '').replace('>', '')
-        query_dict_str = query_dict_str.replace('\\n', '')
-        print(query_dict_str)
-        filter_dict = eval(query_dict_str)
-        EmployeeMaster = read_main_file()
-        frequency = return_frequency(filter_dict)
-        print(frequency)
-        date_value_list = return_date_list(frequency)
-        report_type = return_report_type(filter_dict)
-        test = filtered_dataframe(report_type, date_value_list, EmployeeMaster, filter_dict)
-        final_dataframe = return_final_table(EmployeeMaster, date_value_list, test)
+        # print(request.POST)
+        # query_dict_str = str(request.POST)
+        # query_dict_str = query_dict_str.replace('<QueryDict:', '').replace('>', '')
+        # query_dict_str = query_dict_str.replace('\\n', '')
+        # print(query_dict_str)
+        # filter_dict = eval(query_dict_str)
+        # EmployeeMaster = read_main_file()
+        # frequency = return_frequency(filter_dict)
+        # print(frequency)
+        # date_value_list = return_date_list(frequency)
+        # report_type = return_report_type(filter_dict)
+        # test = filtered_dataframe(report_type, date_value_list, EmployeeMaster, filter_dict)
+        # final_dataframe = return_final_table(EmployeeMaster, date_value_list, test)
 
-        return HttpResponse(final_dataframe[:5].to_html())
+        # Define a dictionary containing employee data
+        data = {'Name': ['Jai', 'Princi', 'Gaurav', 'Anuj'],
+                'Age': [27, 24, 22, 32],
+                'Address': ['Delhi', 'Kanpur', 'Allahabad', 'Kannauj'],
+                'Qualification': ['Msc', 'MA', 'MCA', 'Phd']}
 
+        # Convert the dictionary into DataFrame
+        df = pd.DataFrame(data)
+
+        # return HttpResponse(final_dataframe[:5].to_html())
+        return render(request, TABLE_HTML, {'data_frame': df})
+        # return HttpResponse('lol')
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
                   DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES, ENTITIES]
     active_fields = fetch_active_fields2(field_list)

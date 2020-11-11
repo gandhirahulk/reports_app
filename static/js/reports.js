@@ -1,3 +1,21 @@
+$('#type_code').on('change', function () {
+    $("#freq_code").val('')
+    if (this.value === 'Monthly HC') {
+        $("#freq_code").val('Monthly YTD')
+        $("#freq_code > option").each(function () {
+            this.style.display = 'none'
+        });
+    } else {
+        $("#freq_code > option").each(function () {
+            if (this.value === 'Monthly YTD') {
+                this.style.display = 'none'
+            } else {
+                this.style.display = 'block'
+            }
+        });
+    }
+});
+
 $(document).keyup(function () {
     if (event.keyCode === 27) {
         $('.checklist-dropdown').css('display', 'none')
@@ -13,23 +31,6 @@ $(".chosen-search-input").each(function (i, v) {
 });
 $(".chosen-choices").each(function (i, v) {
     v.style.width = '300px'
-});
-
-$('#main_table').dataTable({
-    scrollX: "true",
-});
-$("#main_table").hover(function () {
-    $('.dataTables_scrollBody').attr('style', 'overflow: scroll !important');
-});
-$("#main_table").mouseout(function () {
-    $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
-});
-
-$(".dataTables_scroll").hover(function () {
-    $('.dataTables_scrollBody').attr('style', 'overflow: scroll !important');
-});
-$(".dataTables_scroll").mouseout(function () {
-    $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
 });
 
 
@@ -63,7 +64,6 @@ $(document).ready(function () {
         v.style.zIndex = '9'
     });
 
-    $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
     $(document).keyup(function (e) {
         if (e.keyCode == 27) {
             var all = document.getElementsByClassName("checklist-dropdown");
@@ -86,8 +86,6 @@ $(document).ready(function () {
 
 
     $(document).on("click", ".MultiCheckBox", function () {
-
-
         var detail = $(this).next();
         detail.show();
     });
