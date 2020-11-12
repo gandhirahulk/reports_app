@@ -195,29 +195,11 @@ class employment_type(models.Model):
         return self.name
 
 
-
-
-
-class sub_team(models.Model):
-    pk_sub_team = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
-    team = models.ForeignKey(team, on_delete=models.CASCADE, null=True)
-
-    created_by = models.CharField(max_length=100)
-    created_date_time = models.DateTimeField(auto_now_add=True, blank=True)
-    modified_by = models.CharField(max_length=100, null=True, blank=True)
-    modified_date_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True)
-
-
-    def __str__(self):
-        return self.name
-
-
 class state(models.Model):
     pk_state = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    sub_team = models.ForeignKey(sub_team, on_delete=models.CASCADE, null=True)
+    # sub_team = models.ForeignKey(sub_team, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
 
     created_by = models.CharField(max_length=100)
     created_date_time = models.DateTimeField(auto_now_add=True, blank=True)
@@ -228,7 +210,6 @@ class state(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class city(models.Model):
     pk_city = models.AutoField(primary_key=True)
@@ -260,6 +241,27 @@ class location(models.Model):
 
     def __str__(self):
         return self.name
+
+class sub_team(models.Model):
+    pk_sub_team = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    team = models.ForeignKey(team, on_delete=models.CASCADE, null=True)
+    state = models.ForeignKey(state, on_delete=models.CASCADE, null=True)
+    city = models.ForeignKey(city, on_delete=models.CASCADE, null=True)
+    location = models.ForeignKey(location, on_delete=models.CASCADE, null=True)
+    
+    
+    created_by = models.CharField(max_length=100)
+    created_date_time = models.DateTimeField(auto_now_add=True, blank=True)
+    modified_by = models.CharField(max_length=100, null=True, blank=True)
+    modified_date_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True)
+
+
+    def __str__(self):
+        return self.name
+
+
 
 
 class vendor(models.Model):
