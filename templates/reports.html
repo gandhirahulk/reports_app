@@ -35,11 +35,13 @@
 
     <script>
         function start_loading() {
+            document.getElementById('table_div').style.display = 'none'
             document.getElementById('loader').style.display = 'block'
         }
 
         function stop_loading() {
             document.getElementById('loader').style.display = 'none'
+            document.getElementById('table_div').style.display = 'block'
         }
 
         var csrf_token = '{{ csrf_token }}'
