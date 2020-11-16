@@ -176,39 +176,6 @@ jQuery.fn.extend({
 });
 
 
-$('input[type="checkbox"]').change(function (e) {
-    $(document.getElementById('partial_select_await')).on('click', function () {
-        $('#checkboxes input:checkbox').each(function () {
-            if ($(this).attr('id').includes('-select')) {
-                let class_name = this.id.split('-')[0]
-                let selected_elements = document.getElementsByClassName(class_name)
-                let checked = 0;
-                let total = 0;
-                for (let i = 0; i < selected_elements.length; i++) {
-                    if (selected_elements[i].checked == true) {
-                        checked += 1;
-                    }
-                    if (selected_elements[i].parentElement.style.display == 'block') {
-                        total += 1
-                    }
-                }
-                if (checked == 0) {
-                    this.checked = false;
-                    $(this).prop({indeterminate: false});
-                } else if (checked == total) {
-                    this.checked = true;
-                    $(this).prop({indeterminate: false});
-                } else if (checked != total) {
-                    this.checked = false;
-                    $(this).prop({indeterminate: true});
-                }
-            }
-
-        });
-    });
-});
-
-
 // initialize count for selected companies
 function initialize_field_count() {
     let class_names = [];
@@ -233,22 +200,21 @@ function render_filtered_fields(data) {
         $(this).parent().css('display', 'block');
     });
 
-    $("input:checkbox").each(function () {
-        jQuery.each(data, function (key, values) {
-            let all_checkboxes = document.getElementsByClassName(key);
-            for (let j = 0; j < all_checkboxes.length; j++) {
-                let id_without_suffix = all_checkboxes[j].id.split("--")[2];
-                if (!values.includes(id_without_suffix)) {
-                    $(all_checkboxes[j]).parent().css('display', 'none');
-                    all_checkboxes[j].checked = false;
-                }
+    jQuery.each(data, function (key, values) {
+        let all_checkboxes = document.getElementsByClassName(key);
+        for (let j = 0; j < all_checkboxes.length; j++) {
+            let id_without_suffix = all_checkboxes[j].id.split("--")[2];
+
+            if (!values.includes(id_without_suffix)) {
+                $(all_checkboxes[j]).parent().css('display', 'none');
+                all_checkboxes[j].checked = false;
             }
-            if (key === "no-selections-made") {
-                $("input:checkbox").each(function () {
-                    $(this).parent().css('display', 'block');
-                });
-            }
-        });
+        }
+        if (key === "no-selections-made") {
+            $("input:checkbox").each(function () {
+                $(this).parent().css('display', 'block');
+            });
+        }
     });
     initialize_field_count()
 }
@@ -289,8 +255,7 @@ function fetch_dependent_field(current_id) {
                 class_name_to_id_map.delete(current_class_name);
             }
         }
-
-
+        console.log(class_name_to_id_map)
         let field_map = filter_records(class_name_to_id_map);
         console.log(field_map)
         if (field_map.length == 0) {
@@ -302,10 +267,10 @@ function fetch_dependent_field(current_id) {
 
 
 let parent_to_child_map = new Map();
-parent_to_child_map.set('Department', ['Function_Category'])
+parent_to_child_map.set('Department', ['Function_Category', 'State'])
 parent_to_child_map.set('Function_Category', ['Team'])
 parent_to_child_map.set('Team', ['Sub_Team'])
-parent_to_child_map.set('Sub_Team', ['State'])
+parent_to_child_map.set('Sub_Team', ['none'])
 parent_to_child_map.set('State', ['City'])
 parent_to_child_map.set('City', ['Location'])
 parent_to_child_map.set('Location', ['Vendor'])
@@ -316,7 +281,7 @@ let child_to_parent_map = new Map();
 child_to_parent_map.set('Vendor', 'Location')
 child_to_parent_map.set('Location', 'City')
 child_to_parent_map.set('City', 'State')
-child_to_parent_map.set('State', 'Sub_Team')
+child_to_parent_map.set('State', 'Department')
 child_to_parent_map.set('Sub_Team', 'Team')
 child_to_parent_map.set('Team', 'Function_Category')
 child_to_parent_map.set('Function_Category', 'Department')

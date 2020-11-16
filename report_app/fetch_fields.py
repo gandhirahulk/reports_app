@@ -9,7 +9,6 @@ def fetch_active_fields2(field_list):
 
     for field in field_list:
         if field != 'display_names':
-            print(field)
             record = getattr(models, TEMPLATE_VARIABLE_TABLE).objects.get(field_name=field)
             sort_name = record.sort_column
             table_name = record.db_table_name
