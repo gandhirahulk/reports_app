@@ -34,6 +34,22 @@
         $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
     });
 
+    $(".odd").hover(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: auto !important');
+    });
+
+    $(".even").hover(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: auto !important');
+    });
+
+    $(".odd").mouseout(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
+    });
+
+    $(".even").mouseout(function () {
+        $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
+    });
+
     $(document).on('ready', function () {
         $('.dataTables_scrollBody').attr('style', 'overflow: hidden !important');
 
