@@ -17,6 +17,8 @@ from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
+from pandas import read_excel
+
 from . import models
 from .constants import *
 from .fetch_fields import fetch_active_fields2
@@ -32,16 +34,17 @@ def last_day_of_month(date_value):
 def read_main_file():
     
     scope = ['https://spreadsheets.google.com/feeds']
-    gc = pygsheets.authorize(service_file='C:/Users/patel.vaishakhi/Downloads/fourth-stock-291709-1cadc070c80b.json')
-    emp_master = gc.open_by_url('https://docs.google.com/spreadsheets/d/1soEWcz-KwUAUR_8ua3xTHDHr0dfR5QEce4-gI0lnPyI/edit#gid=0')
-    wks3 = emp_master.worksheet_by_title("EmployeeMaster")
-    EmployeeMaster = wks3.get_as_df()
+    # gc = pygsheets.authorize(service_file='C:/Users/chirag.phor/Downloads/fourth-stock-291709-1cadc070c80b.xlsx')
+    # emp_master = gc.open_by_url('https://docs.google.com/spreadsheets/d/1soEWcz-KwUAUR_8ua3xTHDHr0dfR5QEce4-gI0lnPyI/edit#gid=0')
+    # wks3 = emp_master.worksheet_by_title("EmployeeMaster")
+    # EmployeeMaster = wks3.get_as_df()
+    EmployeeMaster = read_excel('C:/Users/chirag.phor/Downloads/fourth-stock-291709-1cadc070c80b.xlsx')
     for index,row in EmployeeMaster.iterrows():
         if row["LWD"]=="":
             EmployeeMaster.at[index,"LWD"]='31-Dec-2200'
     EmployeeMaster['DATE OF JOINING (DD/MM/YY)'] = pd.to_datetime(EmployeeMaster['DATE OF JOINING (DD/MM/YY)']).dt.strftime('%Y-%m-%d')
     EmployeeMaster.insert(5, "LWD_Remarks", EmployeeMaster['LWD'], True)
-    EmployeeMaster['LWD'] = EmployeeMaster['LWD'].str.replace("To be confirmed|Temporary Suspension|Data received from payroll team|to be cofirmed|Not Joined|to be confirmed|not joined|LWD is not available|Layoff cases|Absconded|LWd not available",'31-Dec-2200', regex=True, case = False)
+    EmployeeMaster['LWD'] = EmployeeMaster['LWD'].astype(str).str.replace("To be confirmed|Temporary Suspension|Data received from payroll team|to be cofirmed|Not Joined|to be confirmed|not joined|LWD is not available|Layoff cases|Absconded|LWd not available",'31-Dec-2200', regex=True, case = False)
     EmployeeMaster['LWD'] = pd.to_datetime(EmployeeMaster['LWD']).dt.strftime('%Y-%m-%d')
     EmployeeMaster.rename(columns = {'DEPARTMENT' : 'Department', 'FUNCTION /CATEGORY ' : 'Function_Category',
                                 'TEAM':'Team','SUB TEAM':'Sub_team','STATE':'State','CITY':'City','DATE OF JOINING (DD/MM/YY)' : 'DOJ',
@@ -234,7 +237,8 @@ def reports(request):
         final_dataframe=return_final_table(filered_df,date_value_list,report_type,frequency)
         final_dataframe["VendorName"]= final_dataframe["VendorName"].str.upper().str.title()
         print(final_dataframe[:6])
-        return render(request, TABLE_HTML, {'data_frame': final_dataframe[:6]})
+        df_file = final_dataframe[:6].to_excel('static/df_to_excel/excel.xlsx')
+        return render(request, TABLE_HTML, {'data_frame': final_dataframe[:6],'df_file':df_file})
 
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
                   DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES, ENTITIES]
