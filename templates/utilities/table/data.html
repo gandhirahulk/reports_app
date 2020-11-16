@@ -1,7 +1,13 @@
 {% for _,record in data_frame.iterrows %}
     <tr>
         {% for value in record %}
-            <td style="text-align: center;">{{ value }}</td>
+
+            <td
+                    {% if forloop.counter == 1 %}
+                        style="text-align: left;"
+                    {% else %}
+                        style="text-align: center;"
+                    {% endif %}>{{ value }}</td>
         {% endfor %}
     </tr>
 {% endfor %}

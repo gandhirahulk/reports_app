@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -25,9 +24,7 @@ SECRET_KEY = '46_gw!=oz$!y%pvx%cx$k&7h0i60!4gdo$@j4iotc!4rqneh7j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.25.26.121','127.0.0.1','172.31.20.49','192.168.0.107']
-
-
+ALLOWED_HOSTS = ['172.25.26.121', '127.0.0.1', '172.31.20.49', '192.168.0.107']
 
 # Application definition
 
@@ -72,7 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'report.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -80,13 +76,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'report',
+        # 'NAME': 'report_new',
         'USER': 'postgres',
+        # 'PASSWORD': 'associate',
         'PASSWORD': 'root',
         'HOST': '192.168.0.107',
+        # 'HOST': 'localhost',
         'PORT': 5432,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -106,7 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -119,7 +116,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -143,7 +139,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 # INACTIVE_TIME = 40 * 60
-SESSION_EXPIRE_AT_BROWSER_CLOSE= True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # SESSION_COOKIE_AGE = INACTIVE_TIME  
 # SESSION_IDLE_TIMEOUT = INACTIVE_TIME 
 

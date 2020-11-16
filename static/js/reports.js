@@ -16,6 +16,15 @@ $('#type_code').on('change', function () {
     }
 });
 
+$("#freq_code").on('click', function () {
+    if (this.value.includes('YTD')) {
+        $("#end_date_div").css('display','')
+    } else {
+        $("#end_date").val('')
+        $("#end_date_div").css('display','none')
+    }
+});
+
 $(document).keyup(function () {
     if (event.keyCode === 27) {
         $('.checklist-dropdown').css('display', 'none')

@@ -16,6 +16,15 @@
                 {% include 'selectors/dimension.html' %}
                 {% include 'selectors/report_type.html' %}
                 {% include 'selectors/frequency.html' %}
+                <div id="end_date_div" class="response-container" style="width: 33%;display: none;">
+                    <div class="reponse-inner-header" style="width: 31%"><label for="">End Date : </label></div>
+                    <div class="response-inner-content">
+                        <div>
+                            <input type="date" name="end_date" id="end_date" style="width: inherit;">
+                        </div>
+
+                    </div>
+                </div>
 
             </form>
 
@@ -71,6 +80,7 @@
             fd.append('report type', document.getElementById('type_code').value)
             fd.append('frequency', document.getElementById('freq_code').value)
             fd.append('dimensions', JSON.stringify(class_name_map))
+            fd.append('end_date', document.getElementById('end_date').value)
             $.ajax({
                 url: '/reports/',
                 method: 'POST',
