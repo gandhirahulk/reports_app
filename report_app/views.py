@@ -233,8 +233,22 @@ def reports(request):
         filered_df=filtered_dataframe(EmployeeMaster,filter_dict)
         final_dataframe=return_final_table(filered_df,date_value_list,report_type,frequency)
         final_dataframe["VendorName"]= final_dataframe["VendorName"].str.upper().str.title()
-        print(final_dataframe[:6])
-        return render(request, TABLE_HTML, {'data_frame': final_dataframe[:6]})
+        final_dataframe.style.set_properties(subset=["VendorName"], **{'text-align': 'left'})
+        collist = final_dataframe.columns.tolist()
+        if report_type!="Attrition Rate":
+            final_dataframe[collist[1:]]=final_dataframe[collist[1:]].astype(int)
+        df_dict={}
+        from datetime import datetime
+        for col in collist[1:]:
+            date_object=datetime.strptime(col, '%Y-%m-%d')
+            df_dict[col]=date_object.strftime('%b %y') 
+        for col in final_dataframe.columns:
+            for name in df_dict:
+                if name==col:    
+                    final_dataframe = final_dataframe.rename(columns={col:df_dict[name]}) 
+
+        print(final_dataframe[:4])
+        return render(request, TABLE_HTML, {'data_frame': final_dataframe})
 
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
                   DIMENSIONS, CITIES, SUB_TEAMS, REGIONS, CTC_SLABS, EXIT_TYPES, AGES, EMP_TYPES, TENURES, ENTITIES]
