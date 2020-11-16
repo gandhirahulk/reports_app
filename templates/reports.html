@@ -27,12 +27,21 @@
         </fieldset>
 
     </div>
+    {% include 'utilities/table/loader.html' %}
 
     <input type="checkbox" id="partial_select_await" hidden>
 
-    <div id="table_div" ></div>
+    <div id="table_div"></div>
 
     <script>
+        function start_loading() {
+            document.getElementById('loader').style.display = 'block'
+        }
+
+        function stop_loading() {
+            document.getElementById('loader').style.display = 'none'
+        }
+
         var csrf_token = '{{ csrf_token }}'
         $("#reports_form").on("submit", function (e) {
             let class_name_map = new Map();
@@ -54,6 +63,7 @@
                     }
                 }
             });
+            start_loading()
             let modalDiv = $("#table_div");
             fd.append('csrfmiddlewaretoken', csrf_token)
             fd.append('report type', document.getElementById('type_code').value)
@@ -68,7 +78,9 @@
                 processData: false,
                 success: function (data) {
                     if (data) {
+
                         modalDiv.html(data);
+                        stop_loading()
                     } else {
                         alert("ajax call not success.");
                     }
