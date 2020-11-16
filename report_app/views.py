@@ -157,8 +157,8 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
                         for key in filter_dict:
                             count=len(filtered_df[filtered_df[key]==filter_dict[key]])
                         final_dataframe.at[index,date_value]=count
-    elif report_type=="Attrition Rate":
-        for date_value in date_value_list:
+    elif report_type=="Attrition rate":
+       for date_value in date_value_list:
                     given_date = datetime(year=2020, month=int(date_value.split('-')[1]), day=1).date()
                     end_of_month=last_day_of_month(given_date)
                     end_of_month=pd.to_datetime(end_of_month).strftime('%Y-%m-%d')
@@ -181,7 +181,8 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
                             except:
                                 attrition=0
                             count=len(filtered_df[filtered_df[key]==filter_dict[key]])
-                        final_dataframe.at[index,date_value]=attrition*100
+                        final_dataframe.at[index,date_value]="{:.0%}".format(attrition)
+    
     
     return final_dataframe
     
@@ -235,17 +236,19 @@ def reports(request):
         final_dataframe["VendorName"]= final_dataframe["VendorName"].str.upper().str.title()
         final_dataframe.style.set_properties(subset=["VendorName"], **{'text-align': 'left'})
         collist = final_dataframe.columns.tolist()
-        if report_type!="Attrition Rate":
-            final_dataframe[collist[1:]]=final_dataframe[collist[1:]].astype(int)
-        df_dict={}
-        from datetime import datetime
-        for col in collist[1:]:
-            date_object=datetime.strptime(col, '%Y-%m-%d')
-            df_dict[col]=date_object.strftime('%b %y') 
-        for col in final_dataframe.columns:
-            for name in df_dict:
-                if name==col:    
-                    final_dataframe = final_dataframe.rename(columns={col:df_dict[name]}) 
+        if report_type!="Attrition rate":
+            if frequency=="MTD":
+                final_dataframe[collist[1:]]=final_dataframe[collist[1:]].astype(int)
+        if frequency=="MTD":
+            df_dict={}
+            from datetime import datetime
+            for col in collist[1:]:
+                date_object=datetime.strptime(col, '%Y-%m-%d')
+                df_dict[col]=date_object.strftime('%b %y') 
+            for col in final_dataframe.columns:
+                for name in df_dict:
+                    if name==col:    
+                        final_dataframe = final_dataframe.rename(columns={col:df_dict[name]}) 
 
         print(final_dataframe[:4])
         return render(request, TABLE_HTML, {'data_frame': final_dataframe})
