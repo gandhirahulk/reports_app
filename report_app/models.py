@@ -267,7 +267,8 @@ class sub_team(models.Model):
 class vendor(models.Model):
     pk_vendor = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    location = models.ForeignKey(location, on_delete=models.CASCADE, null=True)
+    # location = models.ForeignKey(location, on_delete=models.CASCADE, null=True)
+    department = models.ForeignKey(department, on_delete=models.CASCADE, null=True)
 
     created_by = models.CharField(max_length=100)
     created_date_time = models.DateTimeField(auto_now_add=True, blank=True)
