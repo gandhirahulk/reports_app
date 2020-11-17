@@ -22,7 +22,8 @@ def last_day_of_month(date_value):
 
 def read_main_file():
     scope = ['https://spreadsheets.google.com/feeds']
-    gc = pygsheets.authorize(service_file='C:/Users/patel.vaishakhi/Downloads/fourth-stock-291709-1cadc070c80b.json')
+    # gc = pygsheets.authorize(service_file='C:/Users/patel.vaishakhi/Downloads/fourth-stock-291709-1cadc070c80b.json')
+    gc = pygsheets.authorize(service_file='/home/hradmin/hranalytics/fourth-stock-291709-1cadc070c80b.json')
     emp_master = gc.open_by_url(
         'https://docs.google.com/spreadsheets/d/1soEWcz-KwUAUR_8ua3xTHDHr0dfR5QEce4-gI0lnPyI/edit#gid=0')
     wks3 = emp_master.worksheet_by_title("EmployeeMaster")
