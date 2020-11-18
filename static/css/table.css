@@ -98,6 +98,13 @@
      * Body styles
      */
   }
+  
+.dataTables_scrollBody thead tr[role="row"]{
+  visibility: collapse !important;
+  margin-bottom: 0px !important;
+}
+
+
   table.dataTable thead{
       margin-top: 10px !important;
   }
@@ -110,6 +117,7 @@
     padding: 5px 10px;
     border-bottom: 1px solid #ddd;
     border: 1px solid #ccc;
+    white-space: nowrap;
   }
   table.dataTable thead th:active,
   table.dataTable thead td:active {

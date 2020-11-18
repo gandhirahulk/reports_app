@@ -46,11 +46,20 @@
         function start_loading() {
             document.getElementById('table_div').style.display = 'none'
             document.getElementById('loader').style.display = 'block'
+            console.log("start")
         }
 
         function stop_loading() {
+        
             document.getElementById('loader').style.display = 'none'
             document.getElementById('table_div').style.display = 'block'
+            $('#main_table').dataTable({
+                scrollX: "true",
+                "autoWidth": true,
+            });
+          
+
+
         }
 
         var csrf_token = '{{ csrf_token }}'
