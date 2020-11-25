@@ -26,6 +26,7 @@ $("#freq_code").on('click', function () {
 });
 
 $(document).keyup(function () {
+
     if (event.keyCode === 27) {
         $('.checklist-dropdown').css('display', 'none')
     }

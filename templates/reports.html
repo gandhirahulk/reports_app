@@ -28,7 +28,7 @@
 
             </form>
 
-
+            <!-- <span id="clicktest"></span> -->
             <button type="submit" class="basic-save-btn" id="render_table" name="go_button" form="reports_form">GO
             </button>
 
@@ -41,8 +41,29 @@
     <input type="checkbox" id="partial_select_await" hidden>
 
     <div id="table_div"></div>
-
     <script>
+        $(document).ready(function(){
+          $("#render_table").click(function(){
+                $('.checklist-dropdown').css('display', 'none');
+          });
+          
+        $(document).keyup(function () {
+
+            if (event.keyCode === 27) {
+                $('.checklist-dropdown').css('display', 'none')
+            }
+        });
+        $(window).click(function (e) {
+            if (e.target.id === 'checkboxes' || e.target.id === 'r_type' || e.target.id === 'f_type') {
+                $('.checklist-dropdown').css('display', 'none')
+            }
+        });
+         
+        });
+        </script>
+    <script>
+       
+
         function start_loading() {
             document.getElementById('table_div').style.display = 'none'
             document.getElementById('loader').style.display = 'block'
@@ -58,8 +79,6 @@
                 "autoWidth": true,
             });
           
-
-
         }
 
         var csrf_token = '{{ csrf_token }}'

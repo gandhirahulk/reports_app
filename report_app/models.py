@@ -282,11 +282,11 @@ class vendor(models.Model):
 
 
 class employee(models.Model):
-    udaan_id = models.AutoField(primary_key=True)
+    udaan_id =  models.CharField(max_length=1000,primary_key=True)
     employee_name = models.CharField(max_length=100)
-    status = models.ForeignKey(status, on_delete=models.CASCADE, null=True)
-    doj = models.DateField()
-    lwd = models.DateField()
+    status = models.CharField(max_length=1000 , null=True, blank=True)
+    doj = models.CharField(max_length=1000 , null=True, blank=True)
+    lwd = models.CharField(max_length=1000 , null=True, blank=True)
     designation = models.CharField(max_length=1000, null=True, blank=True)
     department = models.CharField(max_length=1000 , null=True, blank=True)
     function_category = models.CharField(max_length=1000 , null=True, blank=True)
@@ -297,8 +297,8 @@ class employee(models.Model):
     location = models.CharField(max_length=1000 , null=True, blank=True)
     reporting_manager_1 = models.CharField(max_length=100, null=True, blank=True)
     reporting_manager_2 = models.CharField(max_length=100, null=True, blank=True)
-    contact_number = models.CharField(max_length=10, null=True, blank=True)
-    vendor = models.CharField(max_length=100, null=True, blank=True)
+    contact_number = models.CharField(max_length=100, null=True, blank=True)
+    vendor = models.CharField(max_length=100, null=True, blank=True) 
 
     created_by = models.CharField(max_length=100)
     created_date_time = models.DateTimeField(auto_now_add=True, blank=True)

@@ -10,6 +10,7 @@ from collections import Counter
 import datetime
 import schedule
 import time
+from styleframe import StyleFrame, Styler, utils   
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -86,17 +87,36 @@ def reports(request):
             # if frequency == "MTD":
                 final_dataframe[collist[1:]
                                 ] = final_dataframe[collist[1:]].astype(int)
-        if frequency == "MTD" or  frequency == "Quarterly YTD":
-            df_dict = {}
-            from datetime import datetime
-            for col in collist[1:]:
-                date_object = datetime.strptime(col, '%Y-%m-%d')
-                df_dict[col] = date_object.strftime('%b %y')
-            for col in final_dataframe.columns:
-                for name in df_dict:
-                    if name == col:
-                        final_dataframe = final_dataframe.rename(
-                            columns={col: df_dict[name]})
+        if frequency == "MTD" or  frequency == "Quarterly YTD" or frequency=="Annually":
+            if report_type != "Net Addition":
+                df_dict = {}
+                from datetime import datetime
+                for col in collist[1:]:
+                    date_object = datetime.strptime(col, '%Y-%m-%d')
+                    df_dict[col] = date_object.strftime('%b %y')
+                for col in final_dataframe.columns:
+                    for name in df_dict:
+                        if name == col:
+                            final_dataframe = final_dataframe.rename(
+                                columns={col: df_dict[name]})
+            else:
+                is_NaN = final_dataframe.isnull()
+                row_has_NaN = is_NaN.any(axis=1)
+                final_dataframe = final_dataframe[row_has_NaN]
+                final_dataframe['VendorName']=final_dataframe['VendorName'].replace(np.nan, "Net Addition")
+                final_dataframe.rename(
+                                columns={'VendorName': "Report Type"},inplace=True)
+                df_dict = {}
+                from datetime import datetime
+                for col in collist[1:]:
+                    date_object = datetime.strptime(col, '%Y-%m-%d')
+                    df_dict[col] = date_object.strftime('%b %y')
+                for col in final_dataframe.columns:
+                    for name in df_dict:
+                        if name == col:
+                            final_dataframe = final_dataframe.rename(
+                                columns={col: df_dict[name]})
+               
 
         end_time=time.time()
         print("------------------------")
@@ -104,8 +124,16 @@ def reports(request):
         print(end_time-start_time)
         print("------------------------")
         # print(final_dataframe[:4])
-        df_file = final_dataframe.to_excel(
-            'static/df_to_excel/final_output.xlsx',index=False)
+        
+        default_style = Styler(font=utils.fonts.calibri, font_size=11)
+        sf = StyleFrame(final_dataframe, styler_obj=default_style)
+        sf.apply_column_style(cols_to_style=list(final_dataframe.columns)[:1],
+        styler_obj=Styler(horizontal_alignment=utils.horizontal_alignments.left,font=utils.fonts.calibri, font_size=11),style_header=True)
+        header_style = Styler(bold=True,bg_color='#99A7C6')
+        sf.apply_headers_style(styler_obj=header_style)
+        sf.set_column_width(columns=list(final_dataframe.columns)[:1],width=45)
+        df_file = sf.to_excel(
+            'static/df_to_excel/final_output.xlsx',index=False).save()
         return render(request, TABLE_HTML, {'data_frame': final_dataframe, 'df_file': df_file})
 
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,

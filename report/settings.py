@@ -24,7 +24,7 @@ SECRET_KEY = '46_gw!=oz$!y%pvx%cx$k&7h0i60!4gdo$@j4iotc!4rqneh7j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.25.26.121', '127.0.0.1', '172.31.20.49', '192.168.0.107','52.140.16.94']
+ALLOWED_HOSTS = ['172.25.26.121', '127.0.0.1', '172.31.20.49', '192.168.0.107','52.140.16.94','106.200.241.67']
 
 # Application definition
 
@@ -80,7 +80,8 @@ DATABASES = {
         'USER': 'postgres',
         # 'PASSWORD': 'associate',
         'PASSWORD': 'root',
-        'HOST': '192.168.0.107',
+        # 'HOST': '192.168.0.107',
+        'HOST' : '192.168.1.103',
         # 'HOST': 'localhost',
         'PORT': 5432,
     }
