@@ -427,19 +427,20 @@ def return_report_type(filter_dict):
                 return "Monthly HC"
 
 
-def filtered_dataframe(EmployeeMaster, filter_dict):
-    
+def filtered_dataframe(EmployeeMaster,filter_dict):
+    final_test = pd.DataFrame()
     for key in filter_dict:
-        if key == "dimensions":
-            if type(filter_dict[key]) == list:
+        if key=="dimensions":
+            if type(filter_dict[key])==list:
                 for dimensions in filter_dict[key]:
                     for dim in eval(dimensions):
-
-                        if type(eval(dimensions)[dim]) == list:
+                        print(dim)
+                        if type(eval(dimensions)[dim])==list:
                             for name in eval(dimensions)[dim]:
-                                
-                                name=name.replace(',','')
-                                name = name.lower()
-                                EmployeeMaster = EmployeeMaster[EmployeeMaster[dim] == name]
+                                print(name)
+                                name=name.lower()
 
-    return EmployeeMaster
+                                final_test=final_test.append(EmployeeMaster[EmployeeMaster[dim]==name])
+                                print(final_test.shape)
+    final_test.drop_duplicates(inplace=True)
+    return final_test      

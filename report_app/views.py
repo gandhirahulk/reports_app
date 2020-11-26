@@ -99,6 +99,7 @@ def reports(request):
                         if name == col:
                             final_dataframe = final_dataframe.rename(
                                 columns={col: df_dict[name]})
+                final_dataframe=final_dataframe.append(final_dataframe.sum(numeric_only=True), ignore_index=True)
             else:
                 is_NaN = final_dataframe.isnull()
                 row_has_NaN = is_NaN.any(axis=1)
@@ -125,15 +126,22 @@ def reports(request):
         print("------------------------")
         # print(final_dataframe[:4])
         
-        default_style = Styler(font=utils.fonts.calibri, font_size=11)
+        default_style = Styler(font=utils.fonts.calibri, font_size=11, fill_pattern_type=None,border_type=None)
         sf = StyleFrame(final_dataframe, styler_obj=default_style)
+
         sf.apply_column_style(cols_to_style=list(final_dataframe.columns)[:1],
-        styler_obj=Styler(horizontal_alignment=utils.horizontal_alignments.left,font=utils.fonts.calibri, font_size=11),style_header=True)
-        header_style = Styler(bold=True,bg_color='#99A7C6')
+        styler_obj=Styler(horizontal_alignment=utils.horizontal_alignments.left,font=utils.fonts.calibri,
+        font_size=11,border_type=None, fill_pattern_type=None,bg_color='#808080'),style_header=True)
+
+        header_style = Styler(bold=True,bg_color='#808080',horizontal_alignment=utils.horizontal_alignments.left,
+        font_color=utils.colors.white,
+        font=utils.fonts.calibri, font_size=11,border_type=None)
         sf.apply_headers_style(styler_obj=header_style)
+
         sf.set_column_width(columns=list(final_dataframe.columns)[:1],width=45)
         df_file = sf.to_excel(
             'static/df_to_excel/final_output.xlsx',index=False).save()
+        print(final_dataframe[:15])
         return render(request, TABLE_HTML, {'data_frame': final_dataframe, 'df_file': df_file})
 
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
