@@ -18,7 +18,7 @@
                 </div>
 
                 <div id="div--{{ dimension.name }}--{{ forloop.counter }}" class="checklist-dropdown"
-                     style="display: none;overflow-y: scroll;height: 30%;">
+                     style="display: none;overflow-y: scroll;height: 50%;">
                     {% define dimension.fk_table.db_table_name|get_sub_field as query_set %}
                     {% for pk,fk in query_set.id_to_fk.items %}
                         <label style="display: block; ">
