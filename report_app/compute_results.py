@@ -197,7 +197,7 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
                     end_of_month=last_day_of_month(given_date)
                     end_of_month=pd.to_datetime(end_of_month).strftime('%Y-%m-%d')
                     filtered_df=EmployeeMaster[(EmployeeMaster['DOJ']<=end_of_month) & (EmployeeMaster['LWD']>=date_value)]
-                    print(date_value)
+                    # print(date_value)
                     
                     for index,row in final_dataframe.iterrows():
                         count=0
@@ -212,7 +212,7 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
                         end_of_month=last_day_of_month(given_date)
                         end_of_month=pd.to_datetime(end_of_month).strftime('%Y-%m-%d')
                         filtered_df=EmployeeMaster[(EmployeeMaster['DOJ']<=date_value) & (EmployeeMaster['LWD']>=date_value)]
-                        print(date_value)
+                        # print(date_value)
                         
                         for index,row in final_dataframe.iterrows():
                             count=0
@@ -226,14 +226,14 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
                         if frequency=="Annually":
                             from datetime import date
                             year=int(date_value.split('-')[0])
-                            print(date(year, 12, 31))
+                            # print(date(year, 12, 31))
                             
                             end_of_month=pd.to_datetime(date(year, 12, 31)).strftime('%Y-%m-%d')
-                            print(end_of_month)
+                            # print(end_of_month)
                         else:
                             end_of_month=pd.to_datetime(date_value[1]).strftime('%Y-%m-%d')
                         filtered_df=EmployeeMaster[(EmployeeMaster['DOJ']<=date_value[0]) & (EmployeeMaster['LWD']>=date_value[0])]
-                        print(date_value)
+                        # print(date_value)
                         # final_dataframe=preparing_final_dataframe(final_dataframe,filtered_df)
                         for index,row in final_dataframe.iterrows():
                             count=0
@@ -248,7 +248,7 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
                         if frequency=="Annually":
                             from datetime import date
                             year=int(date_value.split('-')[0])
-                            print(date(year, 12, 31))
+                            # print(date(year, 12, 31))
                             
                             end_of_month=pd.to_datetime(date(year, 12, 31)).strftime('%Y-%m-%d')
                             # end_of_month=pd.to_datetime(date(year, 12, 31).strftime('%Y-%m-%d'))
@@ -420,7 +420,7 @@ def return_final_table(EmployeeMaster,date_value_list,report_type,frequency):
 def return_report_type(filter_dict):
     for key in filter_dict:
         if key == "report type":
-            print("yes")
+            # print("yes")
             if len(list(filter_dict[key])) > 0:
                 return list(filter_dict[key])[0]
             else:
@@ -434,13 +434,13 @@ def filtered_dataframe(EmployeeMaster,filter_dict):
             if type(filter_dict[key])==list:
                 for dimensions in filter_dict[key]:
                     for dim in eval(dimensions):
-                        print(dim)
+                        # print(dim)
                         if type(eval(dimensions)[dim])==list:
                             for name in eval(dimensions)[dim]:
-                                print(name)
+                                # print(name)
                                 name=name.lower()
 
                                 final_test=final_test.append(EmployeeMaster[EmployeeMaster[dim]==name])
-                                print(final_test.shape)
+                                # print(final_test.shape)
     final_test.drop_duplicates(inplace=True)
     return final_test      
