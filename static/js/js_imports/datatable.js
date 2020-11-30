@@ -10572,7 +10572,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bServerSide": false,
+		"bServerSide": true,
 	
 	
 		/**
@@ -10591,7 +10591,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"bSort": true,
+		"bSort": false,
 	
 	
 		/**
