@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 from django.contrib.auth import views as auth_views
 
-from report_app import views
+from . import views
 
 app_name = 'report_app'
 
