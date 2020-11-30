@@ -24,7 +24,7 @@ SECRET_KEY = '46_gw!=oz$!y%pvx%cx$k&7h0i60!4gdo$@j4iotc!4rqneh7j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.25.26.121', '127.0.0.1', '172.31.20.49', '192.168.0.107','52.140.16.94','106.200.241.67','192.168.0.189']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -75,17 +75,18 @@ WSGI_APPLICATION = 'report.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'report',
+        'NAME': 'dashboard',
         # 'NAME': 'report_new',
-        'USER': 'postgres',
+        'USER': 'hrmsadmin@hrms-server',
         # 'PASSWORD': 'associate',
-        'PASSWORD': 'root',
+        'PASSWORD': 'Ud@@NhRm$',
         # 'HOST': '192.168.0.107',
-        'HOST' : '192.168.0.189',
+        'HOST' : 'hrms-server.postgres.database.azure.com',
         # 'HOST': 'localhost',
         'PORT': 5432,
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
