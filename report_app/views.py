@@ -100,6 +100,7 @@ def reports(request):
                             final_dataframe = final_dataframe.rename(
                                 columns={col: df_dict[name]})
                 final_dataframe=final_dataframe.append(final_dataframe.sum(numeric_only=True), ignore_index=True)
+                final_dataframe['VendorName'] = final_dataframe['VendorName'].fillna('Total') 
             else:
                 is_NaN = final_dataframe.isnull()
                 row_has_NaN = is_NaN.any(axis=1)
@@ -141,7 +142,7 @@ def reports(request):
         sf.set_column_width(columns=list(final_dataframe.columns)[:1],width=45)
         df_file = sf.to_excel(
             'static/df_to_excel/final_output.xlsx',index=False).save()
-        print(final_dataframe[:15])
+       
         return render(request, TABLE_HTML, {'data_frame': final_dataframe, 'df_file': df_file})
 
     field_list = [EMPLOYEES, VENDORS, STATES, LOCATIONS, GENDERS, TEAMS, FUNCTIONS, REPORT_TYPES, FREQUENCIES,
