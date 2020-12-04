@@ -26,11 +26,11 @@ def read_main_file():
 
     # follows django database settings format, replace with your own settings
     DATABASES = {
-        'report':{
-            'NAME': 'report',
-            'USER': 'postgres',
-            'PASSWORD': 'root',
-            'HOST': '127.0.0.1',
+        'report': {
+            'NAME': 'dashboard',
+            'USER': 'hrmsadmin@hrms-server',
+            'PASSWORD': 'Ud@@NhRm$',
+            'HOST' : 'hrms-server.postgres.database.azure.com',
             'PORT': 5432,
         },
     }
