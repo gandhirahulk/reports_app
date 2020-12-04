@@ -41,3 +41,4 @@ styleframe==3.0.5
 uritemplate==3.0.1
 urllib3==1.26.2
 xlrd==1.2.0
+whitenoise==5.2.0
